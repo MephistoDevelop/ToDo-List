@@ -1,0 +1,22 @@
+{
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2015,
+    "import/extensions": "off",
+    "import/no-unresolved": "off"
+  },
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "no-global-assign": [
+      "error",
+      {
+        "exceptions": ["Object"]
+      }
+    ]
+  }
+}

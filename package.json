@@ -1,0 +1,33 @@
+{
+  "name": "to-do",
+  "version": "1.0.0",
+  "description": "> Project taked from Microverse Curriculum from [The Odin Page project Site]().",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "builddev": "webpack --mode development",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "keywords": [],
+  "author": "MephistoDevelop <inesherald@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "npx": "^10.2.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "dependencies": {
+    "browser-sync": "^2.26.7"
+  }
+}
