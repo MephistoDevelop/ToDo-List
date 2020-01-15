@@ -20,7 +20,7 @@ Javascript with Webpack project from [The Odin Project curriculum](https://www.t
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://mephistodevelop.github.io/ToDo-List/)
 
 ## Getting Started
 
