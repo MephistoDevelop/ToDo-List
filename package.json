@@ -7,12 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
     "builddev": "webpack --mode development",
-    "start": "webpack-dev-server --mode development --open"
+    "start": "webpack-dev-server --mode development --open",
+    "webpack": "webpack"
   },
   "keywords": [],
   "author": "MephistoDevelop <inesherald@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
     "browser-sync-webpack-plugin": "^2.2.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",

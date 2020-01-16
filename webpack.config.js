@@ -12,25 +12,9 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function() {
-                return [require('precss'), require('autoprefixer')];
-              },
-            },
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader'],
       },
