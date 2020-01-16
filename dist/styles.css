@@ -2,10 +2,18 @@ body {
   margin: 0;
   padding: 0px;
 }
+#header-container {
+  font-size: 40px;
+  font-weight: bold;
+  color: #dbedf3;
+  text-shadow: 0 0 10px rgb(84, 93, 221), 0 0 5px rgb(0, 129, 146),
+    0 0px 6px rgb(115, 3, 143);z
+}
 #main-container {
+  box-shadow: 0 0 10px 2px #000, 0 0 10px 4px rgb(48, 29, 53);
   margin: 0;
   padding: 0px;
-  background-color: #283149;
+  background-color: rgba(40, 49, 73, 0.9);
   height: 100vh;
   width: 100%;
   color: white;
@@ -24,4 +32,8 @@ body {
 #row-container {
   display: flex;
   justify-content: center;
+  box-shadow: 0 0 10px 2px #000, 0 0 10px 4px rgb(48, 29, 53);
+}
+#content-container {
+  margin-top: 1%;
 }
