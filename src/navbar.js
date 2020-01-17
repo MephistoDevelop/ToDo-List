@@ -8,14 +8,18 @@ function mySideBar() {
 
 function renderList() {
   const navContainer = document.getElementById('nav-container');
+  const titleNav = document.createElement('h3');
   const buttonAddContainer = document.createElement('div');
   const listContainer = document.createElement('div');
   const textAdd = document.createElement('div');
+  titleNav.textContent = 'Lists';
   buttonAddContainer.id = 'btn-add-list';
+  titleNav.id = 'nav-title';
   listContainer.id = 'list-container';
   textAdd.innerText = '+ Add List';
   textAdd.id = 'add-text';
   buttonAddContainer.appendChild(textAdd);
+  navContainer.appendChild(titleNav);
   navContainer.appendChild(buttonAddContainer);
   navContainer.appendChild(listContainer);
 
