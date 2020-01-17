@@ -48,11 +48,13 @@ function showMenuAdd() {
     plusBtn.style.display = 'none';
     deleteBtn.style.display = 'none';
     textHide.style.display = 'block';
-    textHide.onclick = funtion(){
+    textHide.onclick = function() {
+      textHide.style.display = 'none';
+      nameListBox.style.display = 'block';
+      plusBtn.style.display = 'block';
+      deleteBtn.style.display = 'block';
       console.log('you click me !!');
-      showMenuAdd();
     };
-
   } else {
     addContainer.appendChild(nameListBox);
     addContainer.appendChild(plusBtn);
@@ -63,10 +65,10 @@ function showMenuAdd() {
     const name = document.getElementById('list-name-box').value;
     addItemToList(name);
     document.getElementById('list-name-box').value = '';
-    nameListBox.style.display = 'none';
-    plusBtn.style.display = 'none';
-    deleteBtn.style.display = 'none';
-    textHide.style.display = 'block';
+    // nameListBox.style.display = 'none';
+    // plusBtn.style.display = 'none';
+    // deleteBtn.style.display = 'none';
+    // textHide.style.display = 'block';
   };
 
   deleteBtn.onclick = function() {
