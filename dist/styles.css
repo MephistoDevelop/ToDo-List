@@ -2,15 +2,32 @@ body {
   margin: 0;
   padding: 0px;
 }
+#btn-add-list {
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 180px;
+  max-width: auto;
+  background-color: #00818a;
+  border-bottom-right-radius: 10px;
+  padding-left: 15px;
+  padding-top: 5px;
+  align-self: center;
+  transform: scale(0.95);
+  box-shadow: 0 0 5px 2px #000, 0 0 5px 2px rgb(48, 29, 53);
+}
+#btn-add-list:hover {
+  color: rgba(40, 49, 73, 0.9);
+  transform: scale(0.98);
+}
 #header-container {
   font-size: 40px;
   font-weight: bold;
   color: #dbedf3;
   text-shadow: 0 0 10px rgb(84, 93, 221), 0 0 5px rgb(0, 129, 146),
-    0 0px 6px rgb(115, 3, 143);z
+    0 0px 6px rgb(115, 3, 143);
 }
 #main-container {
-  box-shadow: 0 0 10px 2px #000, 0 0 10px 4px rgb(48, 29, 53);
+  box-shadow: 0 0 5px 2px #000, 0 0 5px 4px rgb(48, 29, 53);
   margin: 0;
   padding: 0px;
   background-color: rgba(40, 49, 73, 0.9);
@@ -23,7 +40,7 @@ body {
 }
 #nav-container {
   width: 30%;
-  background-color: blue;
+  /* background-color: blue; */
 }
 #todo-container {
   width: 70%;
@@ -36,4 +53,55 @@ body {
 }
 #content-container {
   margin-top: 1%;
+}
+.list-title {
+  font-size: 15px;
+  font-weight: 600;
+  width: 100%;
+  background-color: black;
+  transition: 0.5s;
+  border-bottom: 1px solid red;
+  border-top: 1px solid red;
+  height: 39px;
+  display: flex;
+  justify-content: center;
+}
+.list-title:hover {
+  color: #00818a;
+}
+.list-title:hover ~ .hide-container {
+  z-index: 1;
+  width: 10%;
+  transition: 0.3s;
+}
+.show-btn {
+  position: absolute;
+  background-color: green;
+  z-index: -1;
+  transition: 0.4s;
+  width: 15%;
+}
+
+.delete-btn {
+  position: absolute;
+  z-index: -1;
+  transition: 0.4s;
+  width: 8%;
+  background-color: red;
+  left: 20%;
+}
+.delete-btn:hover {
+  z-index: 1;
+}
+.hide-container {
+  z-index: -1;
+  width: 100%;
+  transition: 0.8s;
+  position: absolute;
+  left: -200px;
+  height: 40px;
+}
+.hide-container:hover {
+  z-index: 1;
+  left: 1%;
 }
