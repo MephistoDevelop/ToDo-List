@@ -37,14 +37,12 @@ function showMenuAdd() {
   plusBtn.innerText = '+';
   deleteBtn.innerText = 'X';
   nameListBox.placeholder = 'Name of List';
-  //addContainer.innerText = '';
 
   addContainer.appendChild(nameListBox);
   addContainer.appendChild(plusBtn);
   addContainer.appendChild(deleteBtn);
   addContainer.onclick = '';
   plusBtn.onclick = function() {
-    // showAddBtn();
     const name = document.getElementById('list-name-box').value;
     addItemToList(name);
     document.getElementById('list-name-box').value = '';
@@ -58,8 +56,6 @@ function showMenuAdd() {
     plusBtn.style.display = 'none';
     deleteBtn.style.display = 'none';
     textHide.style.display = 'block';
-    //addContainer.textContent = '+ Add List';
-    //addContainer.onclick = showHiden;
   };
 }
 

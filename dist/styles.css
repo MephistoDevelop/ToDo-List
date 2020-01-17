@@ -22,7 +22,6 @@ body {
 }
 #btn-add-list:hover {
   color: rgba(40, 49, 73, 0.9);
-  transform: scale(0.98);
 }
 #header-container {
   font-size: 40px;
@@ -162,6 +161,9 @@ body {
   margin-right: 3%;
   margin-left: 12%;
 }
+#btn-list-plus:hover {
+  transform: scale(1.2);
+}
 #btn-list-delete {
   color: whitesmoke;
   font-size: 22px;
@@ -173,6 +175,13 @@ body {
   border-radius: 50%;
   box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
 }
+#btn-list-delete:hover {
+  transform: scale(1.2);
+}
 #add-text {
   width: 100%;
+  height: 30px;
+}
+#add-text:hover {
+  color: #404b69;
 }
