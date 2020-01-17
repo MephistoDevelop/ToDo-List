@@ -190,3 +190,13 @@ body {
   text-align: center;
   margin-bottom: 20px;
 }
+@media (min-with: 499px) {
+  body {
+    background-color: none !important;
+  }
+  #row-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
