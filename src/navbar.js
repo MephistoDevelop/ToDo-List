@@ -38,20 +38,41 @@ function showMenuAdd() {
   addContainer.appendChild(deleteBtn);
   addContainer.onclick = '';
   plusBtn.onclick = function() {
-    showAddBtn();
-    addItemToList();
+    // showAddBtn();
+    const name = document.getElementById('list-name-box').value;
+    addItemToList(name);
+  };
+  deleteBtn.onclick = function() {
+    nameListBox.style.display = 'none';
+    plusBtn.style.display = 'none';
+    deleteBtn.style.display = 'none';
+    addContainer.innerText = '+ Add List';
+    //addContainer.onclick = showHiden;
   };
 }
 
-function showAddBtn() {
+function showHiden() {
+  const nameListBox = document.getElementById('list-name-box');
+  const plusBtn = document.getElementById(('btn-list-plus');
+  const deleteBtn = document.getElementById(('btn-list-delete');
+  nameListBox.style.display = 'block';
+  plusBtn.style.display = 'block';
+  deleteBtn.style.display = 'block';
+}
+
+function showAddBtn(box, btnPlus, btnDelete) {
   const addContainer = document.getElementById('btn-add-list');
   console.log(addContainer.childElementCount);
-  addContainer.children[0].remove();
-  addContainer.children[1].remove();
-  addContainer.children[0].remove();
   addContainer.innerText = '+ Add List';
+  addContainer.onclick = function() {
+    this.innerText = '';
+    this.appendChild(box);
+    this.appendChild(btnPlus);
+    this.appendChild(btnDelete);
+    this.onclick = '';
+  };
 }
-function addItemToList() {
+function addItemToList(name) {
   const listContainer = document.getElementById('list-container');
   const listItem = document.createElement('div');
   const itemName = document.createElement('div');
@@ -59,7 +80,7 @@ function addItemToList() {
   const deleteItem = document.createElement('div');
   const hideContainer = document.createElement('div');
 
-  itemName.innerText = 'My List';
+  itemName.innerText = `${name}`;
   deleteItem.innerText = 'X';
   showItem.innerText = 'Show';
   listItem.className = 'd-flex';

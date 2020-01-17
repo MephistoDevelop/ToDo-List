@@ -44,15 +44,15 @@ body {
   padding: 1%;
 }
 #nav-container {
-  width: 30%;
-  border: 5px solid bisque;
+  width: 20%;
+  border: 3px solid bisque;
   border-radius: 5%;
   padding: 20px 0;
   box-shadow: 3px 4px 2px #000, 0 0 1px 1px rgb(48, 29, 53);
 }
 #todo-container {
   width: 70%;
-  border: 5px solid bisque;
+  border: 3px solid bisque;
   border-radius: 2.5%;
   padding: 20px 0;
   box-shadow: 5px 0 7px 2px #000, 0 0 1px 1px rgb(48, 29, 53);
@@ -62,7 +62,7 @@ body {
 #row-container {
   display: flex;
   justify-content: center;
-  //box-shadow: 0 0 10px 2px #000, 0 0 10px 4px rgb(48, 29, 53);
+  //box-shadow: 0 0 10px 2px #000, 0 0 4px 4px rgb(48, 29, 53);
   overflow-y: auto;
 }
 #content-container {
@@ -126,7 +126,7 @@ body {
   width: 98%;
   transition: 0.4s;
   position: absolute;
-  left: -200px;
+  left: -310px;
   height: 40px;
   margin: 0.5% 0;
 }
@@ -146,6 +146,7 @@ body {
   color: whitesmoke;
   font-weight: 500;
   margin: 5px 0;
+  max-width: 120px;
 }
 #btn-list-plus {
   font-size: 22px;
