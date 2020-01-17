@@ -51,14 +51,15 @@ body {
   box-shadow: 3px 4px 2px #000, 0 0 1px 1px rgb(48, 29, 53);
 }
 #todo-container {
+  display: flex;
   background-color: rgba(40, 49, 73, 0.7);
   width: 70%;
   border: 3px solid bisque;
   border-radius: 2.5%;
-  padding: 20px 0;
+  padding: 15px;
   box-shadow: 5px 0 7px 2px #000, 0 0 1px 1px rgb(48, 29, 53);
   margin: 0 10px;
-  //background-color: red;
+  flex-direction: column;
 }
 #row-container {
   display: flex;
@@ -189,6 +190,29 @@ body {
 #nav-title {
   text-align: center;
   margin-bottom: 20px;
+}
+#add-task-btn {
+  font-size: 24px;
+  transition: 0.3s;
+  border: none;
+  background-color: green;
+  text-align: center;
+  font-weight: bolder;
+  border-radius: 20%;
+  color: whitesmoke;
+  box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
+
+  border: 2px solid #00818a;
+  cursor: auto;
+  float: right;
+}
+#add-task-btn:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+#todo-title-container {
+  font-size: 28px;
+  font-weight: 500;
 }
 @media (min-with: 499px) {
   body {

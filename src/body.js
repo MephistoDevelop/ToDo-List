@@ -1,4 +1,5 @@
 import { mySideBar } from './navbar.js';
+import { renderTodos } from './todos.js';
 
 function mainContainer() {
   const mainContainer = document.createElement('div');
@@ -12,8 +13,6 @@ function mainContainer() {
   headerContainer.id = 'header-container';
   mainContainer.id = 'main-container';
   todosContainer.id = 'todo-container';
-
-  todosContainer.textContent = 'Hello im todo List Container';
   headerContainer.textContent = 'To Do Task Manager';
   document.body.appendChild(mainContainer);
   mainContainer.appendChild(headerContainer);
@@ -26,9 +25,17 @@ function mainContainer() {
 function insideTodoContent() {
   const c = document.getElementById('todo-container');
   const todoContent = document.createElement('div');
+  const plusBtn = document.createElement('button');
 
+  plusBtn.innerText = '+';
+  plusBtn.id = 'add-task-btn';
   todoContent.id = 'todo-list-content';
   todoContent.innerText = 'im the content';
+  const titleContainer = document.createElement('div');
+  titleContainer.textContent = 'Tasks To Do';
+  titleContainer.id = 'todo-title-container';
+  titleContainer.appendChild(plusBtn);
+  c.appendChild(titleContainer);
   c.appendChild(todoContent);
 }
 
