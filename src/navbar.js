@@ -26,6 +26,7 @@ function showMenuAdd() {
 
   plusBtn.id = 'btn-list-plus';
   deleteBtn.id = 'btn-list-delete';
+  nameListBox.id = 'list-name-box';
 
   plusBtn.innerText = '+';
   deleteBtn.innerText = 'X';
