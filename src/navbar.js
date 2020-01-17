@@ -10,19 +10,25 @@ function renderList() {
   const navContainer = document.getElementById('nav-container');
   const buttonAddContainer = document.createElement('div');
   const listContainer = document.createElement('div');
+  const textAdd = document.createElement('div');
   buttonAddContainer.id = 'btn-add-list';
   listContainer.id = 'list-container';
-  buttonAddContainer.innerText = '+ Add List';
+  textAdd.innerText = '+ Add List';
+  textAdd.id = 'add-text';
+  buttonAddContainer.appendChild(textAdd);
   navContainer.appendChild(buttonAddContainer);
   navContainer.appendChild(listContainer);
 
-  buttonAddContainer.onclick = showMenuAdd;
+  textAdd.onclick = showMenuAdd;
 }
 function showMenuAdd() {
   const addContainer = document.getElementById('btn-add-list');
+  const textHide = document.getElementById('add-text');
   const nameListBox = document.createElement('input');
   const plusBtn = document.createElement('button');
   const deleteBtn = document.createElement('button');
+
+  textHide.style.display = 'none';
 
   plusBtn.id = 'btn-list-plus';
   deleteBtn.id = 'btn-list-delete';
@@ -31,7 +37,7 @@ function showMenuAdd() {
   plusBtn.innerText = '+';
   deleteBtn.innerText = 'X';
   nameListBox.placeholder = 'Name of List';
-  addContainer.innerText = '';
+  //addContainer.innerText = '';
 
   addContainer.appendChild(nameListBox);
   addContainer.appendChild(plusBtn);
@@ -41,37 +47,22 @@ function showMenuAdd() {
     // showAddBtn();
     const name = document.getElementById('list-name-box').value;
     addItemToList(name);
+    document.getElementById('list-name-box').value = '';
+    nameListBox.style.display = 'none';
+    plusBtn.style.display = 'none';
+    deleteBtn.style.display = 'none';
+    textHide.style.display = 'block';
   };
   deleteBtn.onclick = function() {
     nameListBox.style.display = 'none';
     plusBtn.style.display = 'none';
     deleteBtn.style.display = 'none';
-    addContainer.innerText = '+ Add List';
+    textHide.style.display = 'block';
+    //addContainer.textContent = '+ Add List';
     //addContainer.onclick = showHiden;
   };
 }
 
-function showHiden() {
-  const nameListBox = document.getElementById('list-name-box');
-  const plusBtn = document.getElementById(('btn-list-plus');
-  const deleteBtn = document.getElementById(('btn-list-delete');
-  nameListBox.style.display = 'block';
-  plusBtn.style.display = 'block';
-  deleteBtn.style.display = 'block';
-}
-
-function showAddBtn(box, btnPlus, btnDelete) {
-  const addContainer = document.getElementById('btn-add-list');
-  console.log(addContainer.childElementCount);
-  addContainer.innerText = '+ Add List';
-  addContainer.onclick = function() {
-    this.innerText = '';
-    this.appendChild(box);
-    this.appendChild(btnPlus);
-    this.appendChild(btnDelete);
-    this.onclick = '';
-  };
-}
 function addItemToList(name) {
   const listContainer = document.getElementById('list-container');
   const listItem = document.createElement('div');
