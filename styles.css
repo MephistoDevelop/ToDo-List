@@ -55,6 +55,7 @@ body {
   margin-top: 1%;
 }
 .list-title {
+  align-items: center;
   font-size: 15px;
   font-weight: 600;
   width: 100%;
@@ -80,28 +81,41 @@ body {
   z-index: -1;
   transition: 0.4s;
   width: 15%;
+  height: 26px;
+  text-align: center;
 }
 
 .delete-btn {
+  height: 26px;
   position: absolute;
   z-index: -1;
   transition: 0.4s;
   width: 8%;
   background-color: red;
-  left: 20%;
+  left: 18%;
+  text-align: center;
 }
 .delete-btn:hover {
   z-index: 1;
+  color: black;
+  font-weight: 600;
 }
 .hide-container {
   z-index: -1;
-  width: 100%;
-  transition: 0.8s;
+  width: 98%;
+  transition: 0.4s;
   position: absolute;
   left: -200px;
   height: 40px;
+  margin: 0.5% 0;
 }
 .hide-container:hover {
   z-index: 1;
-  left: 1%;
+  left: 2%;
+}
+.show-btn:hover {
+  color: black;
+}
+#list-container {
+  margin: 10px;
 }
