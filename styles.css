@@ -173,3 +173,6 @@ body {
   border-radius: 50%;
   box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
 }
+#add-text {
+  width: 100%;
+}
