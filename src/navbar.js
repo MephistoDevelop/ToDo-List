@@ -31,6 +31,7 @@ function showMenuAdd() {
   const nameListBox = document.createElement('input');
   const plusBtn = document.createElement('button');
   const deleteBtn = document.createElement('button');
+  const childCount = addContainer.childElementCount;
 
   textHide.style.display = 'none';
 
@@ -42,10 +43,22 @@ function showMenuAdd() {
   deleteBtn.innerText = 'X';
   nameListBox.placeholder = 'Name of List';
 
-  addContainer.appendChild(nameListBox);
-  addContainer.appendChild(plusBtn);
-  addContainer.appendChild(deleteBtn);
-  addContainer.onclick = '';
+  if (childCount > 1) {
+    nameListBox.style.display = 'none';
+    plusBtn.style.display = 'none';
+    deleteBtn.style.display = 'none';
+    textHide.style.display = 'block';
+    textHide.onclick = funtion(){
+      console.log('you click me !!');
+      showMenuAdd();
+    };
+
+  } else {
+    addContainer.appendChild(nameListBox);
+    addContainer.appendChild(plusBtn);
+    addContainer.appendChild(deleteBtn);
+  }
+
   plusBtn.onclick = function() {
     const name = document.getElementById('list-name-box').value;
     addItemToList(name);
@@ -55,6 +68,7 @@ function showMenuAdd() {
     deleteBtn.style.display = 'none';
     textHide.style.display = 'block';
   };
+
   deleteBtn.onclick = function() {
     nameListBox.style.display = 'none';
     plusBtn.style.display = 'none';
@@ -72,6 +86,7 @@ function addItemToList(name) {
   const hideContainer = document.createElement('div');
 
   itemName.innerText = `${name}`;
+  console.log(name);
   deleteItem.innerText = 'X';
   showItem.innerText = 'Show';
   listItem.className = 'd-flex';
