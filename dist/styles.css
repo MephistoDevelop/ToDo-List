@@ -148,7 +148,7 @@ body {
   margin: 5px 0;
 }
 #btn-list-plus {
-  font-size: 23px;
+  font-size: 22px;
   transition: 0.4s;
   border: none;
   background-color: green;
@@ -158,8 +158,8 @@ body {
   color: whitesmoke;
   box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
   margin-left: 15%;
-  margin-right: 2%;
-  margin: 2% 5%;
+  margin-right: 3%;
+  margin-left: 12%;
 }
 #btn-list-delete {
   color: whitesmoke;
