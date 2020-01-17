@@ -1,3 +1,8 @@
+::placeholder {
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 20px;
+}
 body {
   margin: 0;
   padding: 0px;
@@ -10,7 +15,7 @@ body {
   background-color: #00818a;
   border-bottom-right-radius: 10px;
   padding-left: 15px;
-  padding-top: 5px;
+  color: whitesmoke;
   align-self: center;
   transform: scale(0.95);
   box-shadow: 0 0 5px 2px #000, 0 0 5px 2px rgb(48, 29, 53);
@@ -40,16 +45,25 @@ body {
 }
 #nav-container {
   width: 30%;
-  /* background-color: blue; */
+  border: 5px solid bisque;
+  border-radius: 5%;
+  padding: 20px 0;
+  box-shadow: 3px 4px 2px #000, 0 0 1px 1px rgb(48, 29, 53);
 }
 #todo-container {
   width: 70%;
-  background-color: red;
+  border: 5px solid bisque;
+  border-radius: 2.5%;
+  padding: 20px 0;
+  box-shadow: 5px 0 7px 2px #000, 0 0 1px 1px rgb(48, 29, 53);
+  margin: 0 10px;
+  //background-color: red;
 }
 #row-container {
   display: flex;
   justify-content: center;
-  box-shadow: 0 0 10px 2px #000, 0 0 10px 4px rgb(48, 29, 53);
+  //box-shadow: 0 0 10px 2px #000, 0 0 10px 4px rgb(48, 29, 53);
+  overflow-y: auto;
 }
 #content-container {
   margin-top: 1%;
@@ -80,20 +94,27 @@ body {
   background-color: green;
   z-index: -1;
   transition: 0.4s;
-  width: 15%;
-  height: 26px;
+  width: 10%;
+  height: 28px;
   text-align: center;
+  font-size: 18px;
+  left: 4%;
+  font-weight: bolder;
+  box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
 }
 
 .delete-btn {
+  font-size: 18px;
   height: 26px;
   position: absolute;
   z-index: -1;
   transition: 0.4s;
   width: 8%;
   background-color: red;
-  left: 18%;
+  left: 15%;
   text-align: center;
+  font-weight: bolder;
+  box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
 }
 .delete-btn:hover {
   z-index: 1;
@@ -118,4 +139,11 @@ body {
 }
 #list-container {
   margin: 10px;
+}
+#list-name-box {
+  border: none;
+  background-color: #00818a;
+  color: whitesmoke;
+  font-weight: 500;
+  margin: 5px 0;
 }
