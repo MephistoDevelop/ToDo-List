@@ -24,6 +24,7 @@ body {
   color: rgba(40, 49, 73, 0.9);
 }
 #header-container {
+  margin-left: 10%;
   font-size: 40px;
   font-weight: bold;
   color: #dbedf3;
@@ -53,7 +54,7 @@ body {
 #todo-container {
   display: flex;
   background-color: rgba(40, 49, 73, 0.7);
-  width: 40%;
+  width: 60%;
   border: 3px solid bisque;
   border-radius: 2.5%;
   padding: 15px;
@@ -134,7 +135,7 @@ body {
 }
 .hide-container:hover {
   z-index: 1;
-  left: 17%;
+  left: 7.6%;
 }
 .show-btn:hover {
   color: black;
@@ -265,13 +266,13 @@ body {
   margin: 10px 0;
   padding-left: 1%;
 }
-@media (min-with: 499px) {
-  body {
-    background-color: none !important;
-  }
-  #row-container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+#title-task-container {
+  display: flex;
+  font-size: 18px;
+}
+.header-task-table {
+  text-align: center;
+  width: 22%;
+  margin: 0 10px;
+  border-bottom: 5px solid #00818a;
 }

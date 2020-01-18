@@ -1,4 +1,33 @@
-function renderTodos() {}
+function createTodo() {
+  console.log('im here');
+  const mainContainer = document.getElementById('task-container');
+  const todoContainer = document.createElement('div');
+  const titleContainer = document.createElement('div');
+  const titleDone = document.createElement('div');
+  const titleName = document.createElement('div');
+  const titleDescription = document.createElement('div');
+  const titleDate = document.createElement('div');
+
+  todoContainer.id = 'toDo-item-container';
+  todoContainer.style.width = '100%';
+
+  titleDone.textContent = 'Done?';
+  titleDone.className = 'header-task-table';
+  titleName.className = 'header-task-table';
+  titleDescription.className = 'header-task-table';
+  titleDate.className = 'header-task-table';
+
+  titleName.textContent = 'Title';
+  titleDescription.textContent = 'Description';
+  titleDate.textContent = 'Due Date';
+  titleContainer.id = 'title-task-container';
+  titleContainer.appendChild(titleDone);
+  titleContainer.appendChild(titleName);
+  titleContainer.appendChild(titleDescription);
+  titleContainer.appendChild(titleDate);
+  todoContainer.appendChild(titleContainer);
+  mainContainer.appendChild(todoContainer);
+}
 function renderForm() {
   const taskContainer = document.getElementById('task-container');
   const todoContainer = document.getElementById('todo-list-content');
@@ -59,4 +88,4 @@ function renderForm() {
   formContainer.appendChild(buttonContainer);
   todoContainer.appendChild(formContainer);
 }
-export { renderTodos, renderForm };
+export { renderForm, createTodo };
