@@ -7,6 +7,9 @@ body {
   margin: 0;
   padding: 0px;
 }
+li {
+  width: 18%;
+}
 #btn-add-list {
   font-size: 18px;
   font-weight: bold;
@@ -272,10 +275,8 @@ body {
   font-size: 18px;
 }
 .header-task-table {
-  padding: 10px 22px;
-  width: 22%;
-  margin: 0 10px;
   border-bottom: 5px solid #00818a;
+  margin: 0 1px;
 }
 .navbar {
   padding: 0.5rem 3rem !important;
