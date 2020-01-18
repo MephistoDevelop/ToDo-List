@@ -20,8 +20,8 @@ function createTodoItem(
   const EditBtn = document.createElement('button');
   const deleteBtn = document.createElement('button');
 
-  EditBtn.id = 'edit-btn-task';
-  deleteBtn.id = 'delete-btn-task';
+  EditBtn.className = 'edit-btn-task';
+  deleteBtn.className = 'delete-btn-task';
   EditBtn.textContent = 'Edit';
   deleteBtn.textContent = 'Delete';
   ActionContainer.appendChild(EditBtn);
@@ -38,7 +38,7 @@ function createTodoItem(
   liTitleText.textContent = title;
   liDoneCheck.type = 'checkbox';
   liDone.className = 'checkbox';
-  ulContainer.className = 'navbar';
+  ulContainer.className = 'navbar ul-item';
   liTitle.appendChild(liTitleText);
   liDone.appendChild(liDoneCheck);
   liDescription.appendChild(liDescriptionText);
