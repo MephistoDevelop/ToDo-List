@@ -12,12 +12,14 @@ function renderList() {
   const buttonAddContainer = document.createElement('div');
   const listContainer = document.createElement('div');
   const textAdd = document.createElement('div');
+
   titleNav.textContent = 'Lists';
   buttonAddContainer.id = 'btn-add-list';
   titleNav.id = 'nav-title';
   listContainer.id = 'list-container';
   textAdd.innerText = '+ Add List';
   textAdd.id = 'add-text';
+
   buttonAddContainer.appendChild(textAdd);
   navContainer.appendChild(titleNav);
   navContainer.appendChild(buttonAddContainer);
@@ -33,7 +35,7 @@ function showMenuAdd() {
   const deleteBtn = document.createElement('button');
   const childCount = addContainer.childElementCount;
 
-  textHide.style.display = 'none';
+  textHide.className = 'd-none';
 
   plusBtn.id = 'btn-list-plus';
   deleteBtn.id = 'btn-list-delete';
@@ -43,18 +45,11 @@ function showMenuAdd() {
   deleteBtn.innerText = 'X';
   nameListBox.placeholder = 'Name of List';
 
-  if (childCount > 1) {
-    nameListBox.style.display = 'none';
-    plusBtn.style.display = 'none';
-    deleteBtn.style.display = 'none';
-    textHide.style.display = 'block';
-    textHide.onclick = function() {
-      textHide.style.display = 'none';
-      nameListBox.style.display = 'block';
-      plusBtn.style.display = 'block';
-      deleteBtn.style.display = 'block';
-      console.log('you click me !!');
-    };
+  if (nameListBox.classList.contains('d-none')) {
+    nameListBox.className = 'd-flex';
+    plusBtn.className = 'd-flex';
+    deleteBtn.className = 'd-flex';
+    textHide.className = 'd-none';
   } else {
     addContainer.appendChild(nameListBox);
     addContainer.appendChild(plusBtn);
@@ -63,20 +58,20 @@ function showMenuAdd() {
 
   plusBtn.onclick = function() {
     const name = document.getElementById('list-name-box').value;
-    addItemToList(name);
+    if (name !== '') {
+      addItemToList(name);
+    } else {
+      alert('You need  to write a valid name..');
+    }
     document.getElementById('list-name-box').value = '';
-    // nameListBox.style.display = 'none';
-    // plusBtn.style.display = 'none';
-    // deleteBtn.style.display = 'none';
-    // textHide.style.display = 'block';
   };
 
-  deleteBtn.onclick = function() {
-    nameListBox.style.display = 'none';
-    plusBtn.style.display = 'none';
-    deleteBtn.style.display = 'none';
-    textHide.style.display = 'block';
-  };
+  deleteBtn.addEventListener('click', function() {
+    nameListBox.className = 'd-none';
+    this.className = 'd-none';
+    plusBtn.className = 'd-none';
+    textHide.className = 'd-flex  ';
+  });
 }
 
 function addItemToList(name) {

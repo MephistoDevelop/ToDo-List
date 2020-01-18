@@ -1,4 +1,9 @@
-function createTodoItem() {
+function createTodoItem(
+  title = 'My Task',
+  description = 'My description',
+  date = '01-01-2020',
+  priority = 1
+) {
   const mainContainer = document.getElementById('toDo-item-container');
   const itemContainer = document.createElement('div');
   const ulContainer = document.createElement('ul');
@@ -23,10 +28,14 @@ function createTodoItem() {
   ActionContainer.appendChild(deleteBtn);
   liAction.appendChild(ActionContainer);
 
-  liDateText.textContent = 'Due Date';
+  if (priority === 1) {
+    ulContainer.style.backgroundColor = 'rgba(0,255,0,0.3)';
+  }
+
+  liDateText.textContent = date;
   ulContainer.style.display = 'flex';
-  liDescriptionText.textContent = 'Description text';
-  liTitleText.textContent = 'Title';
+  liDescriptionText.textContent = description;
+  liTitleText.textContent = title;
   liDoneCheck.type = 'checkbox';
   liDone.className = 'checkbox';
   ulContainer.className = 'navbar';
