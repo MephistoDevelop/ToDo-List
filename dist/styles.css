@@ -41,7 +41,7 @@ li {
   font-size: 40px;
   font-weight: bold;
   color: #dbedf3;
-  text-shadow: 0 0 10px rgb(84, 93, 221), 0 0 5px, 0 0px 6px rgb(115, 3, 143);
+  text-shadow: 0 0 10px rgb(84, 93, 221), 0 0 1px, 0 0px 1px rgb(115, 3, 143);
 }
 #main-container {
   box-shadow: 0 0 5px 2px #000, 0 0 5px 4px rgb(48, 29, 53);
