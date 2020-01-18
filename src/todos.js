@@ -1,6 +1,8 @@
 function renderTodos() {}
 function renderForm() {
+  const taskContainer = document.getElementById('task-container');
   const todoContainer = document.getElementById('todo-list-content');
+  const addLabel = document.createElement('div');
   const buttonContainer = document.createElement('div');
   const formContainer = document.createElement('div');
   const inputTitleTask = document.createElement('input');
@@ -26,16 +28,25 @@ function renderForm() {
   optLow.innerHTML = 'Low';
   formContainer.id = 'form-container';
   cbxPriority.id = 'cbx-priority';
+  addLabel.textContent = 'Add Task';
+  addLabel.id = 'add-task-lbl';
   inputTitleTask.placeholder = 'Title';
   inputDateTask.placeholder = 'Due Date';
   cbxPriority.placeholder = 'Priority';
   buttonContainer.className = 'd-flex';
   inputDescriptionTask.placeholder = 'Description';
   inputTitleTask.className = 'form-boxs';
-  inputDateTask.className = 'form-boxs';
+  inputDateTask.className = 'form-boxs form-datetime';
   cbxPriority.className = 'form-boxs';
   inputDescriptionTask.className = 'form-boxs';
   formContainer.className = 'd-none';
+  inputDateTask.type = 'date';
+  CancelTask.addEventListener('click', function() {
+    const form = document.getElementById('form-container');
+    form.classList.remove('d-flex');
+    form.classList.add('d-none');
+  });
+  formContainer.appendChild(addLabel);
   formContainer.appendChild(inputTitleTask);
   formContainer.appendChild(inputDateTask);
   formContainer.appendChild(inputDescriptionTask);

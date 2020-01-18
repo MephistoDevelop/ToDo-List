@@ -26,7 +26,9 @@ function insideTodoContent() {
   const c = document.getElementById('todo-container');
   const todoContent = document.createElement('div');
   const plusBtn = document.createElement('button');
+  const taskContainer = document.createElement('div');
 
+  taskContainer.id = 'task-container';
   plusBtn.innerText = '+';
   plusBtn.id = 'add-task-btn';
   todoContent.id = 'todo-list-content';
@@ -45,6 +47,7 @@ function insideTodoContent() {
   });
   c.appendChild(titleContainer);
   c.appendChild(todoContent);
+  c.appendChild(taskContainer);
   renderForm();
 }
 
