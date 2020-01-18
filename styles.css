@@ -35,7 +35,7 @@ body {
   margin: 0;
   padding: 0px;
   background-color: rgba(40, 49, 73, 0.9);
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   color: white;
   display: flex;
@@ -193,6 +193,7 @@ body {
 }
 #add-task-btn {
   font-size: 24px;
+  font-size: 24px;
   transition: 0.3s;
   border: none;
   background-color: green;
@@ -200,8 +201,7 @@ body {
   font-weight: bolder;
   border-radius: 20%;
   color: whitesmoke;
-  box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
-
+  box-shadow: 3px 4px 1px 2px rgba(0, 0, 0, 0.6);
   border: 2px solid #00818a;
   cursor: auto;
   float: right;
@@ -225,6 +225,8 @@ body {
   box-shadow: inset 0 0 3px 2px rgba(0, 0, 0, 0.6);
 }
 #form-container {
+  font-size: 18px;
+  font-weight: 600;
   display: flex;
   flex-direction: column;
   padding-right: 15%;
@@ -258,6 +260,10 @@ body {
   transform: scale(1.05);
   color: black;
   font-size: 18px;
+}
+#add-task-lbl {
+  margin: 10px 0;
+  padding-left: 1%;
 }
 @media (min-with: 499px) {
   body {
