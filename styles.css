@@ -283,3 +283,6 @@ li {
   font-size: 18px;
   list-style: none;
 }
+.checkbox {
+  padding-left: 7%;
+}
