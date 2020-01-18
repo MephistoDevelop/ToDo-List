@@ -28,6 +28,7 @@ function createTodoItem() {
   liDescriptionText.textContent = 'Description text';
   liTitleText.textContent = 'Title';
   liDoneCheck.type = 'checkbox';
+  liDone.className = 'checkbox';
   ulContainer.className = 'navbar';
   liTitle.appendChild(liTitleText);
   liDone.appendChild(liDoneCheck);
