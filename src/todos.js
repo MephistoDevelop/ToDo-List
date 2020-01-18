@@ -10,6 +10,18 @@ function createTodoItem() {
   const liDescriptionText = document.createElement('p');
   const liDate = document.createElement('li');
   const liDateText = document.createElement('p');
+  const liAction = document.createElement('li');
+  const ActionContainer = document.createElement('div');
+  const EditBtn = document.createElement('button');
+  const deleteBtn = document.createElement('button');
+
+  EditBtn.id = 'edit-btn-task';
+  deleteBtn.id = 'delete-btn-task';
+  EditBtn.textContent = 'Edit';
+  deleteBtn.textContent = 'Delete';
+  ActionContainer.appendChild(EditBtn);
+  ActionContainer.appendChild(deleteBtn);
+  liAction.appendChild(ActionContainer);
 
   liDateText.textContent = 'Due Date';
   ulContainer.style.display = 'flex';
@@ -25,6 +37,7 @@ function createTodoItem() {
   ulContainer.appendChild(liTitle);
   ulContainer.appendChild(liDescription);
   ulContainer.appendChild(liDate);
+  ulContainer.appendChild(liAction);
   itemContainer.appendChild(ulContainer);
   mainContainer.appendChild(itemContainer);
 }
@@ -32,15 +45,16 @@ function createTodoItem() {
 function createTodoHeader() {
   const mainContainer = document.getElementById('task-container');
   const todoContainer = document.createElement('div');
-  const titleContainer = document.createElement('div');
-  const titleDone = document.createElement('div');
-  const titleName = document.createElement('div');
-  const titleDescription = document.createElement('div');
-  const titleDate = document.createElement('div');
-  const titleAction = document.createElement('div');
+  const titleContainer = document.createElement('ul');
+  const titleDone = document.createElement('li');
+  const titleName = document.createElement('li');
+  const titleDescription = document.createElement('li');
+  const titleDate = document.createElement('li');
+  const titleAction = document.createElement('li');
 
   todoContainer.id = 'toDo-item-container';
   todoContainer.style.width = '100%';
+  titleContainer.className = 'navbar';
   titleAction.textContent = 'Action';
   titleDone.textContent = 'Done?';
   titleDone.className = 'header-task-table';
