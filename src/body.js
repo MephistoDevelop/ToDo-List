@@ -1,5 +1,5 @@
 import { mySideBar } from './navbar.js';
-import { renderTodos } from './todos.js';
+import { renderTodos, renderForm } from './todos.js';
 
 function mainContainer() {
   const mainContainer = document.createElement('div');
@@ -30,13 +30,22 @@ function insideTodoContent() {
   plusBtn.innerText = '+';
   plusBtn.id = 'add-task-btn';
   todoContent.id = 'todo-list-content';
-  todoContent.innerText = 'im the content';
   const titleContainer = document.createElement('div');
   titleContainer.textContent = 'Tasks To Do';
   titleContainer.id = 'todo-title-container';
   titleContainer.appendChild(plusBtn);
+  plusBtn.addEventListener('click', function() {
+    const form = document.getElementById('form-container');
+    if (form.classList.contains('d-none')) {
+      form.classList.remove('d-none');
+    } else {
+      form.classList.remove('d-flex');
+      form.classList.add('d-none');
+    }
+  });
   c.appendChild(titleContainer);
   c.appendChild(todoContent);
+  renderForm();
 }
 
 export { mainContainer };

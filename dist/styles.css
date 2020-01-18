@@ -53,7 +53,7 @@ body {
 #todo-container {
   display: flex;
   background-color: rgba(40, 49, 73, 0.7);
-  width: 70%;
+  width: 40%;
   border: 3px solid bisque;
   border-radius: 2.5%;
   padding: 15px;
@@ -79,7 +79,7 @@ body {
   transition: 0.5s;
   border-bottom: 1px solid red;
   border-top: 1px solid red;
-  height: 39px;
+  height: 45px;
   display: flex;
   justify-content: center;
 }
@@ -96,8 +96,8 @@ body {
   background-color: green;
   z-index: -1;
   transition: 0.4s;
-  width: 10%;
-  height: 28px;
+  width: 8%;
+  height: 26px;
   text-align: center;
   font-size: 18px;
   left: 4%;
@@ -113,7 +113,7 @@ body {
   transition: 0.4s;
   width: 8%;
   background-color: red;
-  left: 15%;
+  left: 13%;
   text-align: center;
   font-weight: bolder;
   box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
@@ -128,13 +128,13 @@ body {
   width: 98%;
   transition: 0.4s;
   position: absolute;
-  left: -310px;
+  left: -370px;
   height: 40px;
   margin: 0.5% 0;
 }
 .hide-container:hover {
   z-index: 1;
-  left: 2%;
+  left: 17%;
 }
 .show-btn:hover {
   color: black;
@@ -213,6 +213,51 @@ body {
 #todo-title-container {
   font-size: 28px;
   font-weight: 500;
+}
+.form-boxs {
+  background-color: #00818a;
+  border: none;
+  margin: 5px;
+  color: whitesmoke;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px;
+  box-shadow: inset 0 0 3px 2px rgba(0, 0, 0, 0.6);
+}
+#form-container {
+  display: flex;
+  flex-direction: column;
+  padding-right: 15%;
+}
+#add-task {
+  background-color: green;
+  transition: 0.4s;
+  width: 50%;
+  height: 35px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bolder;
+  box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
+}
+#cancel-task {
+  background-color: red;
+  transition: 0.4s;
+  width: 50%;
+  height: 35px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bolder;
+  box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
+}
+#cancel-task:hover {
+  transform: scale(1.05);
+  color: black;
+  font-size: 18px;
+}
+#add-task:hover {
+  transform: scale(1.05);
+  color: black;
+  font-size: 18px;
 }
 @media (min-with: 499px) {
   body {
