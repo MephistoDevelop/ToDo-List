@@ -1,5 +1,35 @@
-function createTodo() {
-  console.log('im here');
+function createTodoItem() {
+  const mainContainer = document.getElementById('toDo-item-container');
+  const itemContainer = document.createElement('div');
+  const ulContainer = document.createElement('ul');
+  const liDone = document.createElement('li');
+  const liDoneCheck = document.createElement('input');
+  const liTitle = document.createElement('li');
+  const liTitleText = document.createElement('p');
+  const liDescription = document.createElement('li');
+  const liDescriptionText = document.createElement('p');
+  const liDate = document.createElement('li');
+  const liDateText = document.createElement('p');
+
+  liDateText.textContent = 'Due Date';
+  ulContainer.style.display = 'flex';
+  liDescriptionText.textContent = 'Description text';
+  liTitleText.textContent = 'Title';
+  liDoneCheck.type = 'checkbox';
+  ulContainer.className = 'navbar';
+  liTitle.appendChild(liTitleText);
+  liDone.appendChild(liDoneCheck);
+  liDescription.appendChild(liDescriptionText);
+  liDate.appendChild(liDateText);
+  ulContainer.appendChild(liDone);
+  ulContainer.appendChild(liTitle);
+  ulContainer.appendChild(liDescription);
+  ulContainer.appendChild(liDate);
+  itemContainer.appendChild(ulContainer);
+  mainContainer.appendChild(itemContainer);
+}
+
+function createTodoHeader() {
   const mainContainer = document.getElementById('task-container');
   const todoContainer = document.createElement('div');
   const titleContainer = document.createElement('div');
@@ -7,15 +37,17 @@ function createTodo() {
   const titleName = document.createElement('div');
   const titleDescription = document.createElement('div');
   const titleDate = document.createElement('div');
+  const titleAction = document.createElement('div');
 
   todoContainer.id = 'toDo-item-container';
   todoContainer.style.width = '100%';
-
+  titleAction.textContent = 'Action';
   titleDone.textContent = 'Done?';
   titleDone.className = 'header-task-table';
   titleName.className = 'header-task-table';
   titleDescription.className = 'header-task-table';
   titleDate.className = 'header-task-table';
+  titleAction.className = 'header-task-table';
 
   titleName.textContent = 'Title';
   titleDescription.textContent = 'Description';
@@ -25,6 +57,7 @@ function createTodo() {
   titleContainer.appendChild(titleName);
   titleContainer.appendChild(titleDescription);
   titleContainer.appendChild(titleDate);
+  titleContainer.appendChild(titleAction);
   todoContainer.appendChild(titleContainer);
   mainContainer.appendChild(todoContainer);
 }
@@ -70,6 +103,11 @@ function renderForm() {
   inputDescriptionTask.className = 'form-boxs';
   formContainer.className = 'd-none';
   inputDateTask.type = 'date';
+  AddTask.addEventListener('click', function() {
+    console.log('Clickeado');
+    createTodoItem();
+  });
+
   CancelTask.addEventListener('click', function() {
     const form = document.getElementById('form-container');
     form.classList.remove('d-flex');
@@ -88,4 +126,4 @@ function renderForm() {
   formContainer.appendChild(buttonContainer);
   todoContainer.appendChild(formContainer);
 }
-export { renderForm, createTodo };
+export { renderForm, createTodoHeader };

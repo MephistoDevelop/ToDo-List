@@ -1,5 +1,5 @@
 import { mySideBar } from './navbar.js';
-import { renderForm, createTodo } from './todos.js';
+import { renderForm, createTodoHeader } from './todos.js';
 
 function mainContainer() {
   const mainContainer = document.createElement('div');
@@ -21,8 +21,9 @@ function mainContainer() {
   mySideBar();
   rowContainer.appendChild(todosContainer);
   insideTodoContent();
-  createTodo();
+  createTodoHeader();
 }
+
 function insideTodoContent() {
   const c = document.getElementById('todo-container');
   const todoContent = document.createElement('div');
