@@ -38,6 +38,18 @@ function createTodoItem(
   liDoneCheck.type = 'checkbox';
   liDone.className = 'checkbox';
   ulContainer.className = 'navbar ul-item';
+
+  const hash = {
+    project: 'my-project',
+    todo: {
+      title: title,
+      description: description,
+      priority: priority,
+      done: false,
+    },
+  };
+
+  localStorage.setItem('Todo', JSON.stringify(hash));
   if (priority === '3') {
     ulContainer.style.backgroundColor = 'rgba(0,255,0,0.5)';
     console.log('priorityone');

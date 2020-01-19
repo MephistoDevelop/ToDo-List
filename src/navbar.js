@@ -60,6 +60,7 @@ function showMenuAdd() {
     const name = document.getElementById('list-name-box').value;
     if (name !== '') {
       addItemToList(name);
+      // localStorage.setItem('projectName', JSON.stringify(name));
     } else {
       alert('You need  to write a valid name..');
     }
@@ -92,7 +93,18 @@ function addItemToList(name) {
   itemName.className = 'list-title  ';
   showItem.className = 'show-btn';
   deleteItem.className = 'delete-btn';
+  showItem.value = name;
+  listItem.id = name;
+  localStorage.setItem('projectName', JSON.stringify(name));
+  showItem.addEventListener('click', function() {
+    // const local = JSON.parse(localStorage.getItem('user'));
 
+    localStorage.setItem('projectName', JSON.stringify(this.value));
+  });
+
+  deleteItem.addEventListener('click', function() {
+    const item = document.getElementById(`${name}`).remove();
+  });
   listItem.appendChild(itemName);
   hideContainer.appendChild(showItem);
   hideContainer.appendChild(deleteItem);

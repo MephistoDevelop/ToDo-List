@@ -296,6 +296,15 @@ li {
 .checkbox {
   padding-left: 7%;
 }
+
+input[type='checkbox'] {
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 10px;
+}
+
 ul .navbar {
   margin: 0 !important;
   box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6) !important;
