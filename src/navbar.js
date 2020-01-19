@@ -1,3 +1,4 @@
+import { showMessage } from './messages.js';
 function mySideBar() {
   const mainContainer = document.getElementById('row-container');
   const navContainer = document.createElement('div');
@@ -60,9 +61,13 @@ function showMenuAdd() {
     const name = document.getElementById('list-name-box').value;
     if (name !== '') {
       addItemToList(name);
+      showMessage(
+        'Task list Added Sucessfully , Now you can fill it with the panel',
+        'rgba(0, 255, 0, 0.4)'
+      );
       // localStorage.setItem('projectName', JSON.stringify(name));
     } else {
-      alert('You need  to write a valid name..');
+      showMessage('You need  to write a valid name..', 'rgba(255, 0, 0, 0.4)');
     }
     document.getElementById('list-name-box').value = '';
   };
@@ -104,6 +109,7 @@ function addItemToList(name) {
 
   deleteItem.addEventListener('click', function() {
     const item = document.getElementById(`${name}`).remove();
+    showMessage('To do List Removed.', 'rgba(255, 0, 0, 0.4)');
   });
   listItem.appendChild(itemName);
   hideContainer.appendChild(showItem);
