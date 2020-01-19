@@ -7,7 +7,9 @@ function mainContainer() {
   const contentContainer = document.createElement('div');
   const todosContainer = document.createElement('div');
   const rowContainer = document.createElement('div');
-
+  const messages = document.createElement('div');
+  messages.id = 'messages';
+  messages.className = 'd-none';
   rowContainer.id = 'row-container';
   contentContainer.id = 'content-container';
   headerContainer.id = 'header-container';
@@ -16,6 +18,7 @@ function mainContainer() {
   headerContainer.textContent = 'To Do Task Manager';
   document.body.appendChild(mainContainer);
   mainContainer.appendChild(headerContainer);
+  mainContainer.appendChild(messages);
   mainContainer.appendChild(contentContainer);
   contentContainer.appendChild(rowContainer);
   mySideBar();
@@ -40,9 +43,13 @@ function insideTodoContent() {
   titleContainer.appendChild(plusBtn);
   plusBtn.addEventListener('click', function() {
     const form = document.getElementById('form-container');
+    let data = JSON.parse(localStorage.getItem('Todo'));
+    const name = JSON.parse(localStorage.getItem('projectName'));
     if (form.classList.contains('d-none')) {
       form.classList.remove('d-none');
+      console.log('Soy la data: ' + data[`${name}`]);
     } else {
+      console.log('Soy la data: ' + data[`${name}`]);
       form.classList.remove('d-flex');
       form.classList.add('d-none');
     }

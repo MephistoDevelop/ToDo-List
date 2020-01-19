@@ -53,7 +53,6 @@ li {
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 1%;
 }
 #nav-container {
   background-color: rgba(40, 49, 73, 0.7);
@@ -344,4 +343,12 @@ ul .navbar {
 }
 .delete-btn-task:hover {
   transform: scale(1.1);
+}
+#messages {
+  background-color: rgba(255, 200, 200, 0.3);
+  height: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
 }

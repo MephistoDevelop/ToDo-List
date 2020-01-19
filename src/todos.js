@@ -1,3 +1,5 @@
+import { showMessage } from './messages.js';
+
 function createTodoItem(
   title = 'My Task',
   description = 'My description',
@@ -74,6 +76,7 @@ function createTodoItem(
   ulContainer.appendChild(liAction);
   itemContainer.appendChild(ulContainer);
   mainContainer.appendChild(itemContainer);
+  showMessage('Task Added Sucessfully', 'rgba(0, 255, 0, 0.5)');
 }
 
 function createTodoHeader() {
