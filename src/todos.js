@@ -10,16 +10,18 @@ function createTodoItem(
   const liDone = document.createElement('li');
   const liDoneCheck = document.createElement('input');
   const liTitle = document.createElement('li');
-  const liTitleText = document.createElement('p');
+  const liTitleText = document.createElement('div');
   const liDescription = document.createElement('li');
-  const liDescriptionText = document.createElement('p');
+  const liDescriptionText = document.createElement('div');
   const liDate = document.createElement('li');
-  const liDateText = document.createElement('p');
+  const liDateText = document.createElement('div');
   const liAction = document.createElement('li');
   const ActionContainer = document.createElement('div');
   const EditBtn = document.createElement('button');
   const deleteBtn = document.createElement('button');
 
+  liDescriptionText.style.wordWrap = 'break-word';
+  liTitleText.style.wordWrap = 'break-word';
   EditBtn.className = 'edit-btn-task';
   deleteBtn.className = 'delete-btn-task';
   EditBtn.textContent = 'Edit';
@@ -32,6 +34,7 @@ function createTodoItem(
     ulContainer.style.backgroundColor = 'rgba(0,255,0,0.3)';
   }
 
+  liDescriptionText.style.width = '100%';
   liDateText.textContent = date;
   ulContainer.style.display = 'flex';
   liDescriptionText.textContent = description;
@@ -105,7 +108,7 @@ function renderForm() {
   AddTask.innerText = 'Add';
   AddTask.id = 'add-task';
   CancelTask.id = 'cancel-task';
-
+  inputTitleTask.id = 'title-box';
   optHigh.value = 1;
   optHigh.innerHTML = 'High';
   optMid.value = 2;
@@ -127,9 +130,19 @@ function renderForm() {
   inputDescriptionTask.className = 'form-boxs';
   formContainer.className = 'd-none';
   inputDateTask.type = 'date';
+  inputTitleTask.id = 'title-box';
+  inputDateTask.id = 'calendar-box';
+  inputDescriptionTask.id = 'description-box';
+  cbxPriority.id = 'cbx-box';
   AddTask.addEventListener('click', function() {
-    console.log('Clickeado');
-    createTodoItem();
+    const titleBox = document.getElementById('title-box').value;
+    const dateBox = document.getElementById('calendar-box').value;
+    const descriptionBox = document.getElementById('description-box').value;
+    const cmbxBox = document.getElementById('cbx-box');
+    const cmbxValue = cmbxBox.options[cmbxBox.selectedIndex].value;
+    console.log('Clickeado' + cmbxValue);
+    createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
+    resetForm();
   });
 
   CancelTask.addEventListener('click', function() {
@@ -149,5 +162,15 @@ function renderForm() {
   buttonContainer.appendChild(CancelTask);
   formContainer.appendChild(buttonContainer);
   todoContainer.appendChild(formContainer);
+}
+function resetForm() {
+  const inputTitleTask = document.getElementById('title-box');
+  const inputDateTask = document.getElementById('calendar-box');
+  const inputDescriptionTask = document.getElementById('description-box');
+  const cbxPriority = document.getElementById('cbx-box');
+  inputTitleTask.value = '';
+  inputDescriptionTask.value = '';
+  inputDateTask.value = '';
+  cbxPriority.selectedIndex = 0;
 }
 export { renderForm, createTodoHeader };
