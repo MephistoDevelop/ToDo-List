@@ -2,7 +2,7 @@ function createTodoItem(
   title = 'My Task',
   description = 'My description',
   date = '01-01-2020',
-  priority = 1
+  priority = '1'
 ) {
   const mainContainer = document.getElementById('toDo-item-container');
   const itemContainer = document.createElement('div');
@@ -30,10 +30,6 @@ function createTodoItem(
   ActionContainer.appendChild(deleteBtn);
   liAction.appendChild(ActionContainer);
 
-  if (priority === 1) {
-    ulContainer.style.backgroundColor = 'rgba(0,255,0,0.3)';
-  }
-
   liDescriptionText.style.width = '100%';
   liDateText.textContent = date;
   ulContainer.style.display = 'flex';
@@ -42,6 +38,19 @@ function createTodoItem(
   liDoneCheck.type = 'checkbox';
   liDone.className = 'checkbox';
   ulContainer.className = 'navbar ul-item';
+  if (priority === '3') {
+    ulContainer.style.backgroundColor = 'rgba(0,255,0,0.5)';
+    console.log('priorityone');
+  }
+
+  if (priority === '2') {
+    ulContainer.style.backgroundColor = 'rgba(255,255,0,0.5) ';
+  }
+
+  if (priority === '1') {
+    ulContainer.style.backgroundColor = 'rgba(255,0,0,0.5)';
+    console.log('priorityone');
+  }
   liTitle.appendChild(liTitleText);
   liDone.appendChild(liDoneCheck);
   liDescription.appendChild(liDescriptionText);
@@ -139,8 +148,10 @@ function renderForm() {
     const dateBox = document.getElementById('calendar-box').value;
     const descriptionBox = document.getElementById('description-box').value;
     const cmbxBox = document.getElementById('cbx-box');
-    const cmbxValue = cmbxBox.options[cmbxBox.selectedIndex].value;
-    console.log('Clickeado' + cmbxValue);
+    const cmbxValue = cmbxBox.options[cmbxBox.selectedIndex].value.toString();
+
+    console.log('Clickeado: ' + cmbxValue);
+
     createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
     resetForm();
   });
