@@ -47,9 +47,9 @@ function insideTodoContent() {
     const name = JSON.parse(localStorage.getItem('projectName'));
     if (form.classList.contains('d-none')) {
       form.classList.remove('d-none');
-      console.log('Soy la data: ' + data[`${name}`]);
+      //  console.log('Soy la data: ' + data[`${name}`] || 'No  hay');
     } else {
-      console.log('Soy la data: ' + data[`${name}`]);
+      // console.log('Soy la data: ' + data[`${name}`] || 'no hay else');
       form.classList.remove('d-flex');
       form.classList.add('d-none');
     }
