@@ -43,8 +43,8 @@ function insideTodoContent() {
   titleContainer.appendChild(plusBtn);
   plusBtn.addEventListener('click', function() {
     const form = document.getElementById('form-container');
-    let data = JSON.parse(localStorage.getItem('Todo'));
-    const name = JSON.parse(localStorage.getItem('projectName'));
+    let data = localStorage.getItem('Todo') || {};
+    const name = localStorage.getItem('projectName') || 'Default';
     if (form.classList.contains('d-none')) {
       form.classList.remove('d-none');
       //  console.log('Soy la data: ' + data[`${name}`] || 'No  hay');

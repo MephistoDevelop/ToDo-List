@@ -40,21 +40,30 @@ function createTodoItem(
   liDoneCheck.type = 'checkbox';
   liDone.className = 'checkbox';
   ulContainer.className = 'navbar ul-item';
+  try {
+    if (localStorage.getItem('Todo') === null) {
+      console.log('No tengo nada...');
+      const hash = {
+        project: 'my-project',
+        todo: {
+          title: title,
+          description: description,
+          priority: priority,
+          done: false,
+        },
+      };
 
-  const hash = {
-    project: 'my-project',
-    todo: {
-      title: title,
-      description: description,
-      priority: priority,
-      done: false,
-    },
-  };
+      localStorage.setItem('Todo', JSON.stringify(hash));
+      //  console.log(JSON.parse(localStorage.getItem('Todo')));
+    } else {
+      console.log('Storage: ');
+    }
+  } catch (error) {
+    console.log('Error');
+  }
 
-  localStorage.setItem('Todo', JSON.stringify(hash));
   if (priority === '3') {
     ulContainer.style.backgroundColor = 'rgba(0,255,0,0.5)';
-    console.log('priorityone');
   }
 
   if (priority === '2') {
@@ -62,8 +71,7 @@ function createTodoItem(
   }
 
   if (priority === '1') {
-    ulContainer.style.backgroundColor = 'rgba(255,0,0,0.5)';
-    console.log('priorityone');
+    ulContainer.style.backgroundColor = 'rgba(245,0,0,0.3)';
   }
   liTitle.appendChild(liTitleText);
   liDone.appendChild(liDoneCheck);
@@ -158,14 +166,13 @@ function renderForm() {
   inputDateTask.id = 'calendar-box';
   inputDescriptionTask.id = 'description-box';
   cbxPriority.id = 'cbx-box';
+
   AddTask.addEventListener('click', function() {
     const titleBox = document.getElementById('title-box').value;
     const dateBox = document.getElementById('calendar-box').value;
     const descriptionBox = document.getElementById('description-box').value;
     const cmbxBox = document.getElementById('cbx-box');
     const cmbxValue = cmbxBox.options[cmbxBox.selectedIndex].value.toString();
-
-    console.log('Clickeado: ' + cmbxValue);
 
     createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
     resetForm();
