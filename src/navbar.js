@@ -91,7 +91,6 @@ function addItemToList(name) {
   const hideContainer = document.createElement('div');
 
   itemName.innerText = `${name}`;
-  console.log(name);
   deleteItem.innerText = 'X';
   showItem.innerText = 'Show';
   listItem.className = 'd-flex';

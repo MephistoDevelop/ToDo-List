@@ -49,9 +49,7 @@ function insideTodoContent() {
     const name = localStorage.getItem('projectName') || 'Default';
     if (form.classList.contains('d-none')) {
       form.classList.remove('d-none');
-      //  console.log('Soy la data: ' + data[`${name}`] || 'No  hay');
     } else {
-      // console.log('Soy la data: ' + data[`${name}`] || 'no hay else');
       form.classList.remove('d-flex');
       form.classList.add('d-none');
     }

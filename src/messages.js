@@ -4,7 +4,7 @@ function showMessage(text, color) {
   message.style.backgroundColor = color;
   message.classList.remove('d-none');
 
-  var delayInMilliseconds = 5000; //1 second
+  var delayInMilliseconds = 5000;
 
   setTimeout(function() {
     message.innerText = '';

@@ -1,5 +1,6 @@
 import { showMessage } from './messages.js';
 import { addItemToList } from './navbar.js';
+
 function cleanTasks() {
   const mainContainer = document.getElementById('tasks-container');
 
@@ -82,10 +83,8 @@ function renderTasks(
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     let arr = JSON.parse(localStorage.getItem(projectName));
     arr.splice(id - 1, 1);
-    //localStorage.setItem(projectName, JSON.stringify({ arr }));
 
     if (liDoneCheck.checked) {
-      console.log('checked');
       const projectName = JSON.parse(localStorage.getItem('projectName'));
       const arr = JSON.parse(localStorage.getItem(projectName));
       arr.forEach((obj, i) => {
@@ -95,7 +94,6 @@ function renderTasks(
       });
       localStorage.setItem(projectName, JSON.stringify(arr));
     } else {
-      console.log('No checked');
       const projectName = JSON.parse(localStorage.getItem('projectName'));
       const arr = JSON.parse(localStorage.getItem(projectName));
       arr.forEach((obj, i) => {
