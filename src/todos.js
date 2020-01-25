@@ -1,5 +1,12 @@
 import { showMessage } from './messages.js';
 import { addItemToList } from './navbar.js';
+function cleanTasks() {
+  const mainContainer = document.getElementById('tasks-container');
+  console.log(document.getElementById('toDo-item-container').childElementCount);
+  while (mainContainer.lastChild) {
+    mainContainer.removeChild(mainContainer.firstChild);
+  }
+}
 function allLists() {
   let keys = Object.keys(localStorage);
   let i = 0;
@@ -327,4 +334,4 @@ function resetForm() {
   inputDateTask.value = '';
   cbxPriority.selectedIndex = 0;
 }
-export { renderForm, createTodoHeader, allLists, allTasks };
+export { renderForm, createTodoHeader, allLists, allTasks, cleanTasks };

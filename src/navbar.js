@@ -1,5 +1,5 @@
 import { showMessage } from './messages.js';
-import { allLists, allTasks } from './todos.js';
+import { allLists, allTasks, cleanTasks } from './todos.js';
 function mySideBar() {
   const mainContainer = document.getElementById('row-container');
   const navContainer = document.createElement('div');
@@ -116,6 +116,7 @@ function addItemToList(name) {
     const item = document.getElementById(`${name}`).remove();
     localStorage.removeItem(name);
     showMessage('To do List Removed.', 'rgba(255, 0, 0, 0.4)');
+    cleanTasks();
   });
   listItem.appendChild(itemName);
   hideContainer.appendChild(showItem);
