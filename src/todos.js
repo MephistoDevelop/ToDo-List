@@ -32,7 +32,14 @@ function allTasks() {
     mainContainer.removeChild(mainContainer.firstChild);
   }
   data.forEach((obj) => {
-    renderTasks(obj.id, obj.title, obj.description, obj.date, obj.priority);
+    renderTasks(
+      obj.id,
+      obj.title,
+      obj.description,
+      obj.date,
+      obj.priority,
+      obj.done
+    );
   });
 }
 
@@ -41,7 +48,8 @@ function renderTasks(
   title = 'My Task',
   description = 'My description',
   date = '01-01-2020',
-  priority = '1'
+  priority = '1',
+  Done = false
 ) {
   const mainContainer = document.getElementById('tasks-container');
   const itemContainer = document.createElement('div');
@@ -69,7 +77,7 @@ function renderTasks(
   EditBtn.id = `editid${id}`;
   deleteBtn.textContent = 'Delete';
   liDoneCheck.id = `check${id}`;
-
+  if (Done) liDoneCheck.checked = true;
   liDoneCheck.addEventListener('change', () => {
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     let arr = JSON.parse(localStorage.getItem(projectName));
