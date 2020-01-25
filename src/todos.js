@@ -94,6 +94,10 @@ function renderTasks(
   });
 
   EditBtn.addEventListener('click', () => {
+    const AddTask = document.getElementById('add-task');
+    const EditTask = document.getElementById('edit-task');
+    AddTask.className = 'd-none';
+    EditTask.classList.remove('d-none');
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     const form = document.getElementById('form-container');
     form.classList.remove('d-none');
@@ -309,11 +313,15 @@ function renderForm() {
   const optMid = document.createElement('option');
   const optLow = document.createElement('option');
 
+  const EditTask = document.createElement('div');
   const AddTask = document.createElement('div');
   const CancelTask = document.createElement('div');
   CancelTask.innerText = 'Cancel';
   AddTask.innerText = 'Add';
   AddTask.id = 'add-task';
+  EditTask.innerText = 'Edit';
+  EditTask.id = 'edit-task';
+  EditTask.className = 'd-none';
   CancelTask.id = 'cancel-task';
   inputTitleTask.id = 'title-box';
   optHigh.value = 1;
@@ -366,6 +374,17 @@ function renderForm() {
     form.classList.remove('d-flex');
     form.classList.add('d-none');
   });
+
+  EditTask.addEventListener('click', () => {
+    const AddTask = document.getElementById('add-task');
+    const EditTask = document.getElementById('edit-task');
+    AddTask.classList.remove('d-none');
+    EditTask.className = 'd-none';
+    resetForm();
+    console.log('Voy a guarda el json editado !!');
+    hideForm();
+  });
+
   formContainer.appendChild(addLabel);
   formContainer.appendChild(inputTitleTask);
   formContainer.appendChild(inputDateTask);
@@ -374,6 +393,7 @@ function renderForm() {
   cbxPriority.appendChild(optMid);
   cbxPriority.appendChild(optLow);
   formContainer.appendChild(cbxPriority);
+  buttonContainer.appendChild(EditTask);
   buttonContainer.appendChild(AddTask);
   buttonContainer.appendChild(CancelTask);
   formContainer.appendChild(buttonContainer);
@@ -388,6 +408,18 @@ function resetForm() {
   inputDescriptionTask.value = '';
   inputDateTask.value = '';
   cbxPriority.selectedIndex = 0;
+}
+
+function hideForm() {
+  const form = document.getElementById('form-container');
+  if (form.classList.contains('d-none')) {
+    form.classList.remove('d-none');
+    //  console.log('Soy la data: ' + data[`${name}`] || 'No  hay');
+  } else {
+    // console.log('Soy la data: ' + data[`${name}`] || 'no hay else');
+    form.classList.remove('d-flex');
+    form.classList.add('d-none');
+  }
 }
 export {
   renderForm,
