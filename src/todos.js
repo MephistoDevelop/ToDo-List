@@ -15,6 +15,78 @@ function allLists() {
   }
 }
 
+function allTasks() {
+  const projectName = JSON.parse(localStorage.getItem('projectName'));
+  const data = JSON.parse(localStorage.getItem(projectName));
+  console.log('Soy nombre proyecto: ' + data);
+  data.forEach((obj) => {
+    renderTasks(obj.title, obj.description, obj.date, obj.priority);
+  });
+}
+function renderTasks(
+  title = 'My Task',
+  description = 'My description',
+  date = '01-01-2020',
+  priority = '1'
+) {
+  const mainContainer = document.getElementById('toDo-item-container');
+  const itemContainer = document.createElement('div');
+  const ulContainer = document.createElement('ul');
+  const liDone = document.createElement('li');
+  const liDoneCheck = document.createElement('input');
+  const liTitle = document.createElement('li');
+  const liTitleText = document.createElement('div');
+  const liDescription = document.createElement('li');
+  const liDescriptionText = document.createElement('div');
+  const liDate = document.createElement('li');
+  const liDateText = document.createElement('div');
+  const liAction = document.createElement('li');
+  const ActionContainer = document.createElement('div');
+  const EditBtn = document.createElement('button');
+  const deleteBtn = document.createElement('button');
+
+  liDescriptionText.style.wordWrap = 'break-word';
+  liTitleText.style.wordWrap = 'break-word';
+  EditBtn.className = 'edit-btn-task';
+  deleteBtn.className = 'delete-btn-task';
+  EditBtn.textContent = 'Edit';
+  deleteBtn.textContent = 'Delete';
+  ActionContainer.appendChild(EditBtn);
+  ActionContainer.appendChild(deleteBtn);
+  liAction.appendChild(ActionContainer);
+
+  liDescriptionText.style.width = '100%';
+  liDateText.textContent = date;
+  ulContainer.style.display = 'flex';
+  liDescriptionText.textContent = description;
+  liTitleText.textContent = title;
+  liDoneCheck.type = 'checkbox';
+  liDone.className = 'checkbox';
+  ulContainer.className = 'navbar ul-item';
+
+  if (priority === '3') {
+    ulContainer.style.backgroundColor = 'rgba(0,255,0,0.5)';
+  }
+
+  if (priority === '2') {
+    ulContainer.style.backgroundColor = 'rgba(255,255,0,0.5) ';
+  }
+
+  if (priority === '1') {
+    ulContainer.style.backgroundColor = 'rgba(245,0,0,0.3)';
+  }
+  liTitle.appendChild(liTitleText);
+  liDone.appendChild(liDoneCheck);
+  liDescription.appendChild(liDescriptionText);
+  liDate.appendChild(liDateText);
+  ulContainer.appendChild(liDone);
+  ulContainer.appendChild(liTitle);
+  ulContainer.appendChild(liDescription);
+  ulContainer.appendChild(liDate);
+  ulContainer.appendChild(liAction);
+  itemContainer.appendChild(ulContainer);
+  mainContainer.appendChild(itemContainer);
+}
 function createTodoItem(
   title = 'My Task',
   description = 'My description',
@@ -241,4 +313,4 @@ function resetForm() {
   inputDateTask.value = '';
   cbxPriority.selectedIndex = 0;
 }
-export { renderForm, createTodoHeader, allLists };
+export { renderForm, createTodoHeader, allLists, allTasks };

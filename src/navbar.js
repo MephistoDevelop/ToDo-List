@@ -1,5 +1,5 @@
 import { showMessage } from './messages.js';
-import { allLists } from './todos.js';
+import { allLists, allTasks } from './todos.js';
 function mySideBar() {
   const mainContainer = document.getElementById('row-container');
   const navContainer = document.createElement('div');
@@ -109,10 +109,12 @@ function addItemToList(name) {
     // const local = JSON.parse(localStorage.getItem('user'));
 
     localStorage.setItem('projectName', JSON.stringify(this.value));
+    allTasks();
   });
 
   deleteItem.addEventListener('click', function() {
     const item = document.getElementById(`${name}`).remove();
+    localStorage.removeItem(name);
     showMessage('To do List Removed.', 'rgba(255, 0, 0, 0.4)');
   });
   listItem.appendChild(itemName);
