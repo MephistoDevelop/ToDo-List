@@ -1,5 +1,5 @@
 import { mySideBar } from './navbar.js';
-import { renderForm, createTodoHeader } from './todos.js';
+import { renderForm, createTodoHeader, allTasks } from './todos.js';
 
 function mainContainer() {
   const mainContainer = document.createElement('div');
@@ -32,7 +32,9 @@ function insideTodoContent() {
   const todoContent = document.createElement('div');
   const plusBtn = document.createElement('button');
   const taskContainer = document.createElement('div');
+  const taskBelowContainer = document.createElement('div');
 
+  taskBelowContainer.id = 'tasks-container';
   taskContainer.id = 'task-container';
   plusBtn.innerText = '+';
   plusBtn.id = 'add-task-btn';
@@ -53,10 +55,12 @@ function insideTodoContent() {
       form.classList.remove('d-flex');
       form.classList.add('d-none');
     }
+    allTasks();
   });
   c.appendChild(titleContainer);
   c.appendChild(todoContent);
   c.appendChild(taskContainer);
+  c.appendChild(taskBelowContainer);
   renderForm();
 }
 

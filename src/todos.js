@@ -19,6 +19,11 @@ function allTasks() {
   const projectName = JSON.parse(localStorage.getItem('projectName'));
   const data = JSON.parse(localStorage.getItem(projectName));
   console.log('Soy nombre proyecto: ' + data);
+  const mainContainer = document.getElementById('tasks-container');
+  console.log(document.getElementById('toDo-item-container').childElementCount);
+  while (mainContainer.lastChild) {
+    mainContainer.removeChild(mainContainer.firstChild);
+  }
   data.forEach((obj) => {
     renderTasks(obj.title, obj.description, obj.date, obj.priority);
   });
@@ -29,7 +34,7 @@ function renderTasks(
   date = '01-01-2020',
   priority = '1'
 ) {
-  const mainContainer = document.getElementById('toDo-item-container');
+  const mainContainer = document.getElementById('tasks-container');
   const itemContainer = document.createElement('div');
   const ulContainer = document.createElement('ul');
   const liDone = document.createElement('li');
@@ -45,6 +50,7 @@ function renderTasks(
   const EditBtn = document.createElement('button');
   const deleteBtn = document.createElement('button');
 
+  itemContainer.id = 'tasks-container';
   liDescriptionText.style.wordWrap = 'break-word';
   liTitleText.style.wordWrap = 'break-word';
   EditBtn.className = 'edit-btn-task';
@@ -93,7 +99,7 @@ function createTodoItem(
   date = '01-01-2020',
   priority = '1'
 ) {
-  const mainContainer = document.getElementById('toDo-item-container');
+  const mainContainer = document.getElementById('tasks-container');
   const itemContainer = document.createElement('div');
   const ulContainer = document.createElement('ul');
   const liDone = document.createElement('li');
@@ -283,6 +289,7 @@ function renderForm() {
 
     createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
     resetForm();
+    allTasks();
   });
 
   CancelTask.addEventListener('click', function() {
