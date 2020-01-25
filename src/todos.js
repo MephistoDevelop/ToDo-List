@@ -1,16 +1,19 @@
 import { showMessage } from './messages.js';
-
-(function allLists() {
+import { addItemToList } from './navbar.js';
+function allLists() {
   let values = [];
   let keys = Object.keys(localStorage);
   let i = 0;
   const listNames = [];
   while (i < keys.length) {
-   listNames.push(localStorage.key(i)));
+    const name = localStorage.key(i);
+    listNames.push(name);
+
+    addItemToList(name);
     console.log('On load !!' + localStorage.key(i));
     i += 1;
   }
-})();
+}
 
 function createTodoItem(
   title = 'My Task',
@@ -232,4 +235,4 @@ function resetForm() {
   inputDateTask.value = '';
   cbxPriority.selectedIndex = 0;
 }
-export { renderForm, createTodoHeader };
+export { renderForm, createTodoHeader, allLists };

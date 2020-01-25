@@ -1,4 +1,5 @@
 import { showMessage } from './messages.js';
+import { allLists } from './todos.js';
 function mySideBar() {
   const mainContainer = document.getElementById('row-container');
   const navContainer = document.createElement('div');
@@ -27,6 +28,7 @@ function renderList() {
   navContainer.appendChild(listContainer);
 
   textAdd.onclick = showMenuAdd;
+  allLists();
 }
 function showMenuAdd() {
   const addContainer = document.getElementById('btn-add-list');
@@ -118,4 +120,4 @@ function addItemToList(name) {
   listItem.appendChild(hideContainer);
   listContainer.appendChild(listItem);
 }
-export { mySideBar };
+export { mySideBar, addItemToList };
