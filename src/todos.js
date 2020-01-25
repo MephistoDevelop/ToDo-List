@@ -1,17 +1,17 @@
 import { showMessage } from './messages.js';
 import { addItemToList } from './navbar.js';
 function allLists() {
-  let values = [];
   let keys = Object.keys(localStorage);
   let i = 0;
   const listNames = [];
   while (i < keys.length) {
     const name = localStorage.key(i);
-    listNames.push(name);
-
-    addItemToList(name);
-    console.log('On load !!' + localStorage.key(i));
-    i += 1;
+    if (name != 'projectName') {
+      listNames.push(name);
+      addItemToList(name);
+      console.log('On load !!' + localStorage.key(i));
+      i += 1;
+    } else i += 1;
   }
 }
 
@@ -61,7 +61,7 @@ function createTodoItem(
       console.log('No tengo nada...');
       const hash = [
         {
-          id: 0,
+          id: 1,
           title: title,
           description: description,
           priority: priority,
@@ -73,7 +73,13 @@ function createTodoItem(
       //  console.log(JSON.parse(localStorage.getItem('Todo')));
     } else {
       const hash = JSON.parse(localStorage.getItem(projectName));
-      let ID = hash[hash.length - 1].id + 1;
+      let ID;
+      console.log(hash);
+      if (hash.length > 0) {
+        ID = hash[hash.length - 1].id + 1;
+      } else {
+        ID = 1;
+      }
 
       const newHash = {
         id: ID,

@@ -103,6 +103,8 @@ function addItemToList(name) {
   showItem.value = name;
   listItem.id = name;
   localStorage.setItem('projectName', JSON.stringify(name));
+  if (!localStorage.getItem(name))
+    localStorage.setItem(name, JSON.stringify([]));
   showItem.addEventListener('click', function() {
     // const local = JSON.parse(localStorage.getItem('user'));
 
