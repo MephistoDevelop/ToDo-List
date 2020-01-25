@@ -1,5 +1,5 @@
 import { mySideBar } from './navbar.js';
-import { renderForm, createTodoHeader, allTasks } from './todos.js';
+import { renderForm, createTodoHeader, allTasks, resetForm } from './todos.js';
 
 function mainContainer() {
   const mainContainer = document.createElement('div');
@@ -56,6 +56,7 @@ function insideTodoContent() {
       form.classList.add('d-none');
     }
     allTasks();
+    resetForm();
   });
   c.appendChild(titleContainer);
   c.appendChild(todoContent);

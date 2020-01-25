@@ -32,10 +32,11 @@ function allTasks() {
     mainContainer.removeChild(mainContainer.firstChild);
   }
   data.forEach((obj) => {
-    renderTasks(obj.title, obj.description, obj.date, obj.priority);
+    renderTasks(obj.id, obj.title, obj.description, obj.date, obj.priority);
   });
 }
 function renderTasks(
+  id = 1,
   title = 'My Task',
   description = 'My description',
   date = '01-01-2020',
@@ -57,15 +58,67 @@ function renderTasks(
   const EditBtn = document.createElement('button');
   const deleteBtn = document.createElement('button');
 
+  ulContainer.id = `id${id}`;
   itemContainer.id = 'tasks-container';
   liDescriptionText.style.wordWrap = 'break-word';
   liTitleText.style.wordWrap = 'break-word';
   EditBtn.className = 'edit-btn-task';
   deleteBtn.className = 'delete-btn-task';
   EditBtn.textContent = 'Edit';
+  EditBtn.id = `editid${id}`;
   deleteBtn.textContent = 'Delete';
-  ActionContainer.appendChild(EditBtn);
+  liDoneCheck.id = `check${id}`;
+
+  liDoneCheck.addEventListener('change', () => {
+    const projectName = JSON.parse(localStorage.getItem('projectName'));
+    let arr = JSON.parse(localStorage.getItem(projectName));
+    arr.splice(id - 1, 1);
+    console.log('ID:' + (id - 1) + '' + JSON.stringify(arr));
+    //localStorage.setItem(projectName, JSON.stringify({ arr }));
+
+    if (liDoneCheck.checked) {
+      console.log('Checkeado');
+    } else {
+      console.log('No Checkeado');
+    }
+  });
+
+  deleteBtn.addEventListener('click', () => {
+    console.log('Me eliminaras !: id: ' + id);
+    const projectName = JSON.parse(localStorage.getItem('projectName'));
+    let arr = JSON.parse(localStorage.getItem(projectName));
+    arr.splice(id - 1, 1);
+    console.log('ID:' + (id - 1) + '' + JSON.stringify(arr));
+    localStorage.setItem(projectName, JSON.stringify(arr));
+    allTasks();
+  });
+
+  EditBtn.addEventListener('click', () => {
+    const projectName = JSON.parse(localStorage.getItem('projectName'));
+    const form = document.getElementById('form-container');
+    form.classList.remove('d-none');
+    form.classList.add('d-flex');
+    const arr = JSON.parse(localStorage.getItem(projectName));
+    arr.forEach((obj, i) => {
+      if (obj.id === id) {
+        const inputTitleTask = document.getElementById('title-box');
+        const inputDateTask = document.getElementById('calendar-box');
+        const inputDescriptionTask = document.getElementById('description-box');
+        const cbxPriority = document.getElementById('cbx-box');
+        inputTitleTask.value = obj.title;
+        inputDescriptionTask.value = obj.description;
+        inputDateTask.value = obj.date;
+        if (obj.priority === '1') cbxPriority.selectedIndex = 0;
+        if (obj.priority === '2') cbxPriority.selectedIndex = 1;
+        if (obj.priority === '3') cbxPriority.selectedIndex = 2;
+      }
+      console.log('index: ' + i);
+    });
+    console.log('Edita me !!' + id);
+  });
+
   ActionContainer.appendChild(deleteBtn);
+  ActionContainer.appendChild(EditBtn);
   liAction.appendChild(ActionContainer);
 
   liDescriptionText.style.width = '100%';
@@ -103,7 +156,7 @@ function renderTasks(
 function createTodoItem(
   title = 'My Task',
   description = 'My description',
-  date = '01-01-2020',
+  date,
   priority = '1'
 ) {
   const mainContainer = document.getElementById('tasks-container');
@@ -128,8 +181,8 @@ function createTodoItem(
   deleteBtn.className = 'delete-btn-task';
   EditBtn.textContent = 'Edit';
   deleteBtn.textContent = 'Delete';
-  ActionContainer.appendChild(EditBtn);
   ActionContainer.appendChild(deleteBtn);
+  ActionContainer.appendChild(EditBtn);
   liAction.appendChild(ActionContainer);
 
   liDescriptionText.style.width = '100%';
@@ -150,10 +203,11 @@ function createTodoItem(
           title: title,
           description: description,
           priority: priority,
+          date: date,
           done: false,
         },
       ];
-
+      ulContainer.id = `id1`;
       localStorage.setItem(projectName, JSON.stringify(hash));
       //  console.log(JSON.parse(localStorage.getItem('Todo')));
     } else {
@@ -165,12 +219,13 @@ function createTodoItem(
       } else {
         ID = 1;
       }
-
+      ulContainer.id = `id${ID}`;
       const newHash = {
         id: ID,
         title: title,
         description: description,
         priority: priority,
+        date: date,
         done: false,
       };
 
@@ -334,4 +389,11 @@ function resetForm() {
   inputDateTask.value = '';
   cbxPriority.selectedIndex = 0;
 }
-export { renderForm, createTodoHeader, allLists, allTasks, cleanTasks };
+export {
+  renderForm,
+  createTodoHeader,
+  allLists,
+  allTasks,
+  cleanTasks,
+  resetForm,
+};
