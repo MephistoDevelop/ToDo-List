@@ -2,7 +2,7 @@ import { showMessage } from './messages.js';
 import { addItemToList } from './navbar.js';
 function cleanTasks() {
   const mainContainer = document.getElementById('tasks-container');
-  console.log(document.getElementById('toDo-item-container').childElementCount);
+
   while (mainContainer.lastChild) {
     mainContainer.removeChild(mainContainer.firstChild);
   }
@@ -16,7 +16,7 @@ function allLists() {
     if (name != 'projectName') {
       listNames.push(name);
       addItemToList(name);
-      console.log('On load !!' + localStorage.key(i));
+
       i += 1;
     } else i += 1;
   }
@@ -25,9 +25,9 @@ function allLists() {
 function allTasks() {
   const projectName = JSON.parse(localStorage.getItem('projectName'));
   const data = JSON.parse(localStorage.getItem(projectName));
-  console.log('Soy nombre proyecto: ' + data);
+
   const mainContainer = document.getElementById('tasks-container');
-  console.log(document.getElementById('toDo-item-container').childElementCount);
+
   while (mainContainer.lastChild) {
     mainContainer.removeChild(mainContainer.firstChild);
   }
@@ -74,22 +74,36 @@ function renderTasks(
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     let arr = JSON.parse(localStorage.getItem(projectName));
     arr.splice(id - 1, 1);
-    console.log('ID:' + (id - 1) + '' + JSON.stringify(arr));
     //localStorage.setItem(projectName, JSON.stringify({ arr }));
 
     if (liDoneCheck.checked) {
-      console.log('Checkeado');
+      console.log('checked');
+      const projectName = JSON.parse(localStorage.getItem('projectName'));
+      const arr = JSON.parse(localStorage.getItem(projectName));
+      arr.forEach((obj, i) => {
+        if (obj.id === id) {
+          obj.done = true;
+        }
+      });
+      localStorage.setItem(projectName, JSON.stringify(arr));
     } else {
-      console.log('No Checkeado');
+      console.log('No checked');
+      const projectName = JSON.parse(localStorage.getItem('projectName'));
+      const arr = JSON.parse(localStorage.getItem(projectName));
+      arr.forEach((obj, i) => {
+        if (obj.id === id) {
+          obj.done = false;
+        }
+      });
+      localStorage.setItem(projectName, JSON.stringify(arr));
     }
   });
 
   deleteBtn.addEventListener('click', () => {
-    console.log('Me eliminaras !: id: ' + id);
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     let arr = JSON.parse(localStorage.getItem(projectName));
     arr.splice(id - 1, 1);
-    console.log('ID:' + (id - 1) + '' + JSON.stringify(arr));
+
     localStorage.setItem(projectName, JSON.stringify(arr));
     allTasks();
   });
@@ -119,9 +133,7 @@ function renderTasks(
         if (obj.priority === '2') cbxPriority.selectedIndex = 1;
         if (obj.priority === '3') cbxPriority.selectedIndex = 2;
       }
-      console.log('index: ' + i);
     });
-    console.log('Edita me !!' + id);
   });
 
   ActionContainer.appendChild(deleteBtn);
@@ -203,7 +215,6 @@ function createTodoItem(
   try {
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     if (localStorage.getItem(projectName) === null) {
-      console.log('No tengo nada...');
       const hash = [
         {
           id: 1,
@@ -216,11 +227,10 @@ function createTodoItem(
       ];
       ulContainer.id = `id1`;
       localStorage.setItem(projectName, JSON.stringify(hash));
-      //  console.log(JSON.parse(localStorage.getItem('Todo')));
     } else {
       const hash = JSON.parse(localStorage.getItem(projectName));
       let ID;
-      console.log(hash);
+
       if (hash.length > 0) {
         ID = hash[hash.length - 1].id + 1;
       } else {
@@ -237,12 +247,10 @@ function createTodoItem(
       };
 
       hash.push(newHash);
-      //console.log('Tengo infoo' + JSON.stringify(hash));
+
       localStorage.setItem(projectName, JSON.stringify(hash));
     }
-  } catch (error) {
-    console.log('Error ' + error);
-  }
+  } catch (error) {}
 
   if (priority === '3') {
     ulContainer.style.backgroundColor = 'rgba(0,255,0,0.5)';
@@ -400,7 +408,6 @@ function renderForm() {
           cmbxBox.selectedIndex
         ].value.toString();
         obj.priority = cmbxValue;
-        console.log('Voy a guarda el json editado !!' + JSON.stringify(obj));
       }
     });
 
@@ -442,9 +449,7 @@ function hideForm() {
   const form = document.getElementById('form-container');
   if (form.classList.contains('d-none')) {
     form.classList.remove('d-none');
-    //  console.log('Soy la data: ' + data[`${name}`] || 'No  hay');
   } else {
-    // console.log('Soy la data: ' + data[`${name}`] || 'no hay else');
     form.classList.remove('d-flex');
     form.classList.add('d-none');
   }
