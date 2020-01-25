@@ -344,6 +344,20 @@ ul .navbar {
 .delete-btn-task:hover {
   transform: scale(1.1);
 }
+#edit-task {
+  background-color: green;
+  transition: 0.4s;
+  width: 50%;
+  height: 35px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bolder;
+  box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.6);
+}
+#edit-task:hover {
+  transform: scale(1.05);
+  color: #000;
+}
 #messages {
   background-color: rgba(255, 200, 200, 0.3);
   height: 30px;
