@@ -1,5 +1,17 @@
 import { showMessage } from './messages.js';
 
+(function allLists() {
+  let values = [];
+  let keys = Object.keys(localStorage);
+  let i = 0;
+  const listNames = [];
+  while (i < keys.length) {
+   listNames.push(localStorage.key(i)));
+    console.log('On load !!' + localStorage.key(i));
+    i += 1;
+  }
+})();
+
 function createTodoItem(
   title = 'My Task',
   description = 'My description',
@@ -41,25 +53,39 @@ function createTodoItem(
   liDone.className = 'checkbox';
   ulContainer.className = 'navbar ul-item';
   try {
-    if (localStorage.getItem('Todo') === null) {
+    const projectName = JSON.parse(localStorage.getItem('projectName'));
+    if (localStorage.getItem(projectName) === null) {
       console.log('No tengo nada...');
-      const hash = {
-        project: 'my-project',
-        todo: {
+      const hash = [
+        {
+          id: 0,
           title: title,
           description: description,
           priority: priority,
           done: false,
         },
-      };
+      ];
 
-      localStorage.setItem('Todo', JSON.stringify(hash));
+      localStorage.setItem(projectName, JSON.stringify(hash));
       //  console.log(JSON.parse(localStorage.getItem('Todo')));
     } else {
-      console.log('Storage: ');
+      const hash = JSON.parse(localStorage.getItem(projectName));
+      let ID = hash[hash.length - 1].id + 1;
+
+      const newHash = {
+        id: ID,
+        title: title,
+        description: description,
+        priority: priority,
+        done: false,
+      };
+
+      hash.push(newHash);
+      //console.log('Tengo infoo' + JSON.stringify(hash));
+      localStorage.setItem(projectName, JSON.stringify(hash));
     }
   } catch (error) {
-    console.log('Error');
+    console.log('Error ' + error);
   }
 
   if (priority === '3') {
