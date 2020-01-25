@@ -287,9 +287,16 @@ function renderForm() {
     const cmbxBox = document.getElementById('cbx-box');
     const cmbxValue = cmbxBox.options[cmbxBox.selectedIndex].value.toString();
 
-    createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
-    resetForm();
-    allTasks();
+    if (titleBox === '' || descriptionBox === '' || dateBox === '') {
+      showMessage('Fill all of the fields correctly after continue', 'red');
+    } else {
+      createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
+      resetForm();
+      allTasks();
+      const form = document.getElementById('form-container');
+      form.classList.remove('d-flex');
+      form.classList.add('d-none');
+    }
   });
 
   CancelTask.addEventListener('click', function() {
