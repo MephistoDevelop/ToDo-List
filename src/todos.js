@@ -35,6 +35,7 @@ function allTasks() {
     renderTasks(obj.id, obj.title, obj.description, obj.date, obj.priority);
   });
 }
+
 function renderTasks(
   id = 1,
   title = 'My Task',
@@ -105,10 +106,12 @@ function renderTasks(
     const arr = JSON.parse(localStorage.getItem(projectName));
     arr.forEach((obj, i) => {
       if (obj.id === id) {
+        const inputIdTask = document.getElementById('txtid');
         const inputTitleTask = document.getElementById('title-box');
         const inputDateTask = document.getElementById('calendar-box');
         const inputDescriptionTask = document.getElementById('description-box');
         const cbxPriority = document.getElementById('cbx-box');
+        inputIdTask.value = id;
         inputTitleTask.value = obj.title;
         inputDescriptionTask.value = obj.description;
         inputDateTask.value = obj.date;
@@ -305,6 +308,7 @@ function renderForm() {
   const addLabel = document.createElement('div');
   const buttonContainer = document.createElement('div');
   const formContainer = document.createElement('div');
+  const inputIdTask = document.createElement('input');
   const inputTitleTask = document.createElement('input');
   const inputDateTask = document.createElement('input');
   const inputDescriptionTask = document.createElement('textarea');
@@ -316,6 +320,8 @@ function renderForm() {
   const EditTask = document.createElement('div');
   const AddTask = document.createElement('div');
   const CancelTask = document.createElement('div');
+  inputIdTask.id = 'txtid';
+  inputIdTask.type = 'hidden';
   CancelTask.innerText = 'Cancel';
   AddTask.innerText = 'Add';
   AddTask.id = 'add-task';
@@ -380,12 +386,34 @@ function renderForm() {
     const EditTask = document.getElementById('edit-task');
     AddTask.classList.remove('d-none');
     EditTask.className = 'd-none';
+    const id = document.getElementById('txtid').value;
+    const projectName = JSON.parse(localStorage.getItem('projectName'));
+    const arr = JSON.parse(localStorage.getItem(projectName));
+
+    arr.forEach((obj, i) => {
+      if (obj.id.toString() === id) {
+        obj.title = document.getElementById('title-box').value;
+        obj.date = document.getElementById('calendar-box').value;
+        obj.description = document.getElementById('description-box').value;
+        const cmbxBox = document.getElementById('cbx-box');
+        const cmbxValue = cmbxBox.options[
+          cmbxBox.selectedIndex
+        ].value.toString();
+        obj.priority = cmbxValue;
+        console.log('Voy a guarda el json editado !!' + JSON.stringify(obj));
+      }
+    });
+
+    localStorage.setItem(projectName, JSON.stringify(arr));
+
     resetForm();
-    console.log('Voy a guarda el json editado !!');
+
     hideForm();
+    allTasks();
   });
 
   formContainer.appendChild(addLabel);
+  formContainer.appendChild(inputIdTask);
   formContainer.appendChild(inputTitleTask);
   formContainer.appendChild(inputDateTask);
   formContainer.appendChild(inputDescriptionTask);
