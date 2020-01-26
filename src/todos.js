@@ -1,5 +1,7 @@
-import { showMessage } from './messages.js';
-import { addItemToList } from './navbar.js';
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/no-cycle */
+import { showMessage } from './messages';
+import { addItemToList } from './navbar';
 
 function cleanTasks() {
   const mainContainer = document.getElementById('tasks-container');
@@ -9,20 +11,18 @@ function cleanTasks() {
   }
 }
 function allLists() {
-  let keys = Object.keys(localStorage);
+  const keys = Object.keys(localStorage);
   let i = 0;
   const listNames = [];
   while (i < keys.length) {
     const name = localStorage.key(i);
-    if (name != 'projectName') {
+    if (name !== 'projectName') {
       listNames.push(name);
       addItemToList(name);
-
       i += 1;
     } else i += 1;
   }
 }
-
 function allTasks() {
   const projectName = JSON.parse(localStorage.getItem('projectName'));
   const data = JSON.parse(localStorage.getItem(projectName));
@@ -33,13 +33,14 @@ function allTasks() {
     mainContainer.removeChild(mainContainer.firstChild);
   }
   data.forEach((obj) => {
+    // eslint-disable-next-line no-use-before-define
     renderTasks(
       obj.id,
       obj.title,
       obj.description,
       obj.date,
       obj.priority,
-      obj.done
+      obj.done,
     );
   });
 }
@@ -50,7 +51,7 @@ function renderTasks(
   description = 'My description',
   date = '01-01-2020',
   priority = '1',
-  Done = false
+  Done = false,
 ) {
   const mainContainer = document.getElementById('tasks-container');
   const itemContainer = document.createElement('div');
@@ -81,22 +82,18 @@ function renderTasks(
   if (Done) liDoneCheck.checked = true;
   liDoneCheck.addEventListener('change', () => {
     const projectName = JSON.parse(localStorage.getItem('projectName'));
-    let arr = JSON.parse(localStorage.getItem(projectName));
+    const arr = JSON.parse(localStorage.getItem(projectName));
     arr.splice(id - 1, 1);
 
     if (liDoneCheck.checked) {
-      const projectName = JSON.parse(localStorage.getItem('projectName'));
-      const arr = JSON.parse(localStorage.getItem(projectName));
-      arr.forEach((obj, i) => {
+      arr.forEach((obj) => {
         if (obj.id === id) {
           obj.done = true;
         }
       });
       localStorage.setItem(projectName, JSON.stringify(arr));
     } else {
-      const projectName = JSON.parse(localStorage.getItem('projectName'));
-      const arr = JSON.parse(localStorage.getItem(projectName));
-      arr.forEach((obj, i) => {
+      arr.forEach((obj) => {
         if (obj.id === id) {
           obj.done = false;
         }
@@ -107,7 +104,7 @@ function renderTasks(
 
   deleteBtn.addEventListener('click', () => {
     const projectName = JSON.parse(localStorage.getItem('projectName'));
-    let arr = JSON.parse(localStorage.getItem(projectName));
+    const arr = JSON.parse(localStorage.getItem(projectName));
     arr.splice(id - 1, 1);
 
     localStorage.setItem(projectName, JSON.stringify(arr));
@@ -124,7 +121,7 @@ function renderTasks(
     form.classList.remove('d-none');
     form.classList.add('d-flex');
     const arr = JSON.parse(localStorage.getItem(projectName));
-    arr.forEach((obj, i) => {
+    arr.forEach((obj) => {
       if (obj.id === id) {
         const inputIdTask = document.getElementById('txtid');
         const inputTitleTask = document.getElementById('title-box');
@@ -178,11 +175,12 @@ function renderTasks(
   itemContainer.appendChild(ulContainer);
   mainContainer.appendChild(itemContainer);
 }
+
 function createTodoItem(
   title = 'My Task',
   description = 'My description',
   date,
-  priority = '1'
+  priority = '1',
 ) {
   const mainContainer = document.getElementById('tasks-container');
   const itemContainer = document.createElement('div');
@@ -224,14 +222,14 @@ function createTodoItem(
       const hash = [
         {
           id: 1,
-          title: title,
-          description: description,
-          priority: priority,
-          date: date,
+          title,
+          description,
+          priority,
+          date,
           done: false,
         },
       ];
-      ulContainer.id = `id1`;
+      ulContainer.id = 'id1';
       localStorage.setItem(projectName, JSON.stringify(hash));
     } else {
       const hash = JSON.parse(localStorage.getItem(projectName));
@@ -245,10 +243,10 @@ function createTodoItem(
       ulContainer.id = `id${ID}`;
       const newHash = {
         id: ID,
-        title: title,
-        description: description,
-        priority: priority,
-        date: date,
+        title,
+        description,
+        priority,
+        date,
         done: false,
       };
 
@@ -256,7 +254,7 @@ function createTodoItem(
 
       localStorage.setItem(projectName, JSON.stringify(hash));
     }
-  } catch (error) {}
+  } catch (error) { showMessage(`Error... ${error}`, 'red'); }
 
   if (priority === '3') {
     ulContainer.style.backgroundColor = 'rgba(0,255,0,0.5)';
@@ -316,8 +314,27 @@ function createTodoHeader() {
   todoContainer.appendChild(titleContainer);
   mainContainer.appendChild(todoContainer);
 }
+function resetForm() {
+  const inputTitleTask = document.getElementById('title-box');
+  const inputDateTask = document.getElementById('calendar-box');
+  const inputDescriptionTask = document.getElementById('description-box');
+  const cbxPriority = document.getElementById('cbx-box');
+  inputTitleTask.value = '';
+  inputDescriptionTask.value = '';
+  inputDateTask.value = '';
+  cbxPriority.selectedIndex = 0;
+}
+
+function hideForm() {
+  const form = document.getElementById('form-container');
+  if (form.classList.contains('d-none')) {
+    form.classList.remove('d-none');
+  } else {
+    form.classList.remove('d-flex');
+    form.classList.add('d-none');
+  }
+}
 function renderForm() {
-  const taskContainer = document.getElementById('task-container');
   const todoContainer = document.getElementById('todo-list-content');
   const addLabel = document.createElement('div');
   const buttonContainer = document.createElement('div');
@@ -370,7 +387,7 @@ function renderForm() {
   inputDescriptionTask.id = 'description-box';
   cbxPriority.id = 'cbx-box';
 
-  AddTask.addEventListener('click', function() {
+  AddTask.addEventListener('click', () => {
     const titleBox = document.getElementById('title-box').value;
     const dateBox = document.getElementById('calendar-box').value;
     const descriptionBox = document.getElementById('description-box').value;
@@ -389,22 +406,20 @@ function renderForm() {
     }
   });
 
-  CancelTask.addEventListener('click', function() {
+  CancelTask.addEventListener('click', () => {
     const form = document.getElementById('form-container');
     form.classList.remove('d-flex');
     form.classList.add('d-none');
   });
 
   EditTask.addEventListener('click', () => {
-    const AddTask = document.getElementById('add-task');
-    const EditTask = document.getElementById('edit-task');
     AddTask.classList.remove('d-none');
     EditTask.className = 'd-none';
     const id = document.getElementById('txtid').value;
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     const arr = JSON.parse(localStorage.getItem(projectName));
 
-    arr.forEach((obj, i) => {
+    arr.forEach((obj) => {
       if (obj.id.toString() === id) {
         obj.title = document.getElementById('title-box').value;
         obj.date = document.getElementById('calendar-box').value;
@@ -440,26 +455,8 @@ function renderForm() {
   formContainer.appendChild(buttonContainer);
   todoContainer.appendChild(formContainer);
 }
-function resetForm() {
-  const inputTitleTask = document.getElementById('title-box');
-  const inputDateTask = document.getElementById('calendar-box');
-  const inputDescriptionTask = document.getElementById('description-box');
-  const cbxPriority = document.getElementById('cbx-box');
-  inputTitleTask.value = '';
-  inputDescriptionTask.value = '';
-  inputDateTask.value = '';
-  cbxPriority.selectedIndex = 0;
-}
 
-function hideForm() {
-  const form = document.getElementById('form-container');
-  if (form.classList.contains('d-none')) {
-    form.classList.remove('d-none');
-  } else {
-    form.classList.remove('d-flex');
-    form.classList.add('d-none');
-  }
-}
+
 export {
   renderForm,
   createTodoHeader,

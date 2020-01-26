@@ -1,5 +1,7 @@
 import { mySideBar } from './navbar.js';
-import { renderForm, createTodoHeader, allTasks, resetForm } from './todos.js';
+import {
+  renderForm, createTodoHeader, allTasks, resetForm,
+} from './todos.js';
 
 function mainContainer() {
   const mainContainer = document.createElement('div');
@@ -43,9 +45,9 @@ function insideTodoContent() {
   titleContainer.textContent = 'Tasks To Do';
   titleContainer.id = 'todo-title-container';
   titleContainer.appendChild(plusBtn);
-  plusBtn.addEventListener('click', function() {
+  plusBtn.addEventListener('click', () => {
     const form = document.getElementById('form-container');
-    let data = localStorage.getItem('Todo') || {};
+    const data = localStorage.getItem('Todo') || {};
     const name = localStorage.getItem('projectName') || 'Default';
     if (form.classList.contains('d-none')) {
       form.classList.remove('d-none');

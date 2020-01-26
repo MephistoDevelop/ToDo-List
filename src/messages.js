@@ -4,9 +4,9 @@ function showMessage(text, color) {
   message.style.backgroundColor = color;
   message.classList.remove('d-none');
 
-  var delayInMilliseconds = 5000;
+  const delayInMilliseconds = 5000;
 
-  setTimeout(function() {
+  setTimeout(() => {
     message.innerText = '';
     message.className = 'd-none';
   }, delayInMilliseconds);

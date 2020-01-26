@@ -1,5 +1,6 @@
 import { showMessage } from './messages.js';
 import { allLists, allTasks, cleanTasks } from './todos.js';
+
 function mySideBar() {
   const mainContainer = document.getElementById('row-container');
   const navContainer = document.createElement('div');
@@ -59,13 +60,13 @@ function showMenuAdd() {
     addContainer.appendChild(deleteBtn);
   }
 
-  plusBtn.onclick = function() {
+  plusBtn.onclick = function () {
     const name = document.getElementById('list-name-box').value;
     if (name !== '') {
       addItemToList(name);
       showMessage(
         'Task list Added Sucessfully , Now you can fill it with the panel',
-        'rgba(0, 255, 0, 0.4)'
+        'rgba(0, 255, 0, 0.4)',
       );
       // localStorage.setItem('projectName', JSON.stringify(name));
     } else {
@@ -74,7 +75,7 @@ function showMenuAdd() {
     document.getElementById('list-name-box').value = '';
   };
 
-  deleteBtn.addEventListener('click', function() {
+  deleteBtn.addEventListener('click', function () {
     nameListBox.className = 'd-none';
     this.className = 'd-none';
     plusBtn.className = 'd-none';
@@ -102,16 +103,15 @@ function addItemToList(name) {
   showItem.value = name;
   listItem.id = name;
   localStorage.setItem('projectName', JSON.stringify(name));
-  if (!localStorage.getItem(name))
-    localStorage.setItem(name, JSON.stringify([]));
-  showItem.addEventListener('click', function() {
+  if (!localStorage.getItem(name)) localStorage.setItem(name, JSON.stringify([]));
+  showItem.addEventListener('click', function () {
     // const local = JSON.parse(localStorage.getItem('user'));
 
     localStorage.setItem('projectName', JSON.stringify(this.value));
     allTasks();
   });
 
-  deleteItem.addEventListener('click', function() {
+  deleteItem.addEventListener('click', () => {
     const item = document.getElementById(`${name}`).remove();
     localStorage.removeItem(name);
     showMessage('To do List Removed.', 'rgba(255, 0, 0, 0.4)');
