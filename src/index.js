@@ -1,4 +1,3 @@
-import 'bootstrap';
 import MainContainer from './body';
 
 MainContainer();
