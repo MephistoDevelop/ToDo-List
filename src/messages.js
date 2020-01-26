@@ -12,4 +12,4 @@ function showMessage(text, color) {
   }, delayInMilliseconds);
 }
 
-export { showMessage };
+export default showMessage;

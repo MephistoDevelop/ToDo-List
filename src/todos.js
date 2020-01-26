@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
-import { showMessage } from './messages';
+import showMessage from './messages';
 import { addItemToList } from './navbar';
 
 function cleanTasks() {

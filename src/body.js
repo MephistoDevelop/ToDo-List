@@ -1,9 +1,9 @@
-import { mySideBar } from './navbar.js';
+import { mySideBar } from './navbar';
 import {
   renderForm, createTodoHeader, allTasks, resetForm,
-} from './todos.js';
+} from './todos';
 
-function mainContainer() {
+function MainContainer() {
   const mainContainer = document.createElement('div');
   const headerContainer = document.createElement('div');
   const contentContainer = document.createElement('div');
@@ -65,4 +65,4 @@ function insideTodoContent() {
   renderForm();
 }
 
-export { mainContainer };
+export default MainContainer;

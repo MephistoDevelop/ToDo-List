@@ -1,87 +1,6 @@
-import { showMessage } from './messages.js';
-import { allLists, allTasks, cleanTasks } from './todos.js';
-
-function mySideBar() {
-  const mainContainer = document.getElementById('row-container');
-  const navContainer = document.createElement('div');
-  navContainer.id = 'nav-container';
-  mainContainer.appendChild(navContainer);
-  renderList();
-}
-
-function renderList() {
-  const navContainer = document.getElementById('nav-container');
-  const titleNav = document.createElement('h3');
-  const buttonAddContainer = document.createElement('div');
-  const listContainer = document.createElement('div');
-  const textAdd = document.createElement('div');
-
-  titleNav.textContent = 'Lists';
-  buttonAddContainer.id = 'btn-add-list';
-  titleNav.id = 'nav-title';
-  listContainer.id = 'list-container';
-  textAdd.innerText = '+ Add List';
-  textAdd.id = 'add-text';
-
-  buttonAddContainer.appendChild(textAdd);
-  navContainer.appendChild(titleNav);
-  navContainer.appendChild(buttonAddContainer);
-  navContainer.appendChild(listContainer);
-
-  textAdd.onclick = showMenuAdd;
-  allLists();
-}
-function showMenuAdd() {
-  const addContainer = document.getElementById('btn-add-list');
-  const textHide = document.getElementById('add-text');
-  const nameListBox = document.createElement('input');
-  const plusBtn = document.createElement('button');
-  const deleteBtn = document.createElement('button');
-  const childCount = addContainer.childElementCount;
-
-  textHide.className = 'd-none';
-
-  plusBtn.id = 'btn-list-plus';
-  deleteBtn.id = 'btn-list-delete';
-  nameListBox.id = 'list-name-box';
-
-  plusBtn.innerText = '+';
-  deleteBtn.innerText = 'X';
-  nameListBox.placeholder = 'Name of List';
-
-  if (nameListBox.classList.contains('d-none')) {
-    nameListBox.className = 'd-flex';
-    plusBtn.className = 'd-flex';
-    deleteBtn.className = 'd-flex';
-    textHide.className = 'd-none';
-  } else {
-    addContainer.appendChild(nameListBox);
-    addContainer.appendChild(plusBtn);
-    addContainer.appendChild(deleteBtn);
-  }
-
-  plusBtn.onclick = function () {
-    const name = document.getElementById('list-name-box').value;
-    if (name !== '') {
-      addItemToList(name);
-      showMessage(
-        'Task list Added Sucessfully , Now you can fill it with the panel',
-        'rgba(0, 255, 0, 0.4)',
-      );
-      // localStorage.setItem('projectName', JSON.stringify(name));
-    } else {
-      showMessage('You need  to write a valid name..', 'rgba(255, 0, 0, 0.4)');
-    }
-    document.getElementById('list-name-box').value = '';
-  };
-
-  deleteBtn.addEventListener('click', function () {
-    nameListBox.className = 'd-none';
-    this.className = 'd-none';
-    plusBtn.className = 'd-none';
-    textHide.className = 'd-flex  ';
-  });
-}
+import showMessage from './messages';
+// eslint-disable-next-line import/no-cycle
+import { allLists, allTasks, cleanTasks } from './todos';
 
 function addItemToList(name) {
   const listContainer = document.getElementById('list-container');
@@ -112,7 +31,7 @@ function addItemToList(name) {
   });
 
   deleteItem.addEventListener('click', () => {
-    const item = document.getElementById(`${name}`).remove();
+    document.getElementById(`${name}`).remove();
     localStorage.removeItem(name);
     showMessage('To do List Removed.', 'rgba(255, 0, 0, 0.4)');
     cleanTasks();
@@ -124,4 +43,82 @@ function addItemToList(name) {
   listItem.appendChild(hideContainer);
   listContainer.appendChild(listItem);
 }
+function showMenuAdd() {
+  const addContainer = document.getElementById('btn-add-list');
+  const textHide = document.getElementById('add-text');
+  const nameListBox = document.createElement('input');
+  const plusBtn = document.createElement('button');
+  const deleteBtn = document.createElement('button');
+
+  textHide.className = 'd-none';
+  plusBtn.id = 'btn-list-plus';
+  deleteBtn.id = 'btn-list-delete';
+  nameListBox.id = 'list-name-box';
+
+  plusBtn.innerText = '+';
+  deleteBtn.innerText = 'X';
+  nameListBox.placeholder = 'Name of List';
+
+  if (nameListBox.classList.contains('d-none')) {
+    nameListBox.className = 'd-flex';
+    plusBtn.className = 'd-flex';
+    deleteBtn.className = 'd-flex';
+    textHide.className = 'd-none';
+  } else {
+    addContainer.appendChild(nameListBox);
+    addContainer.appendChild(plusBtn);
+    addContainer.appendChild(deleteBtn);
+  }
+
+  plusBtn.onclick = () => {
+    const name = document.getElementById('list-name-box').value;
+    if (name !== '') {
+      addItemToList(name);
+      showMessage(
+        'Task list Added Sucessfully , Now you can fill it with the panel',
+        'rgba(0, 255, 0, 0.4)',
+      );
+    } else {
+      showMessage('You need  to write a valid name..', 'rgba(255, 0, 0, 0.4)');
+    }
+    document.getElementById('list-name-box').value = '';
+  };
+
+  deleteBtn.addEventListener('click', () => {
+    nameListBox.className = 'd-none';
+    this.className = 'd-none';
+    plusBtn.className = 'd-none';
+    textHide.className = 'd-flex  ';
+  });
+}
+function renderList() {
+  const navContainer = document.getElementById('nav-container');
+  const titleNav = document.createElement('h3');
+  const buttonAddContainer = document.createElement('div');
+  const listContainer = document.createElement('div');
+  const textAdd = document.createElement('div');
+
+  titleNav.textContent = 'Lists';
+  buttonAddContainer.id = 'btn-add-list';
+  titleNav.id = 'nav-title';
+  listContainer.id = 'list-container';
+  textAdd.innerText = '+ Add List';
+  textAdd.id = 'add-text';
+
+  buttonAddContainer.appendChild(textAdd);
+  navContainer.appendChild(titleNav);
+  navContainer.appendChild(buttonAddContainer);
+  navContainer.appendChild(listContainer);
+
+  textAdd.onclick = showMenuAdd;
+  allLists();
+}
+function mySideBar() {
+  const mainContainer = document.getElementById('row-container');
+  const navContainer = document.createElement('div');
+  navContainer.id = 'nav-container';
+  mainContainer.appendChild(navContainer);
+  renderList();
+}
+
 export { mySideBar, addItemToList };

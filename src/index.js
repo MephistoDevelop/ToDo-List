@@ -1,7 +1,7 @@
 import 'bootstrap';
-import * as myBody from './body.js';
+import MainContainer from './body';
 
-myBody.mainContainer();
+MainContainer();
 (() => {
   const hash = [
     {
