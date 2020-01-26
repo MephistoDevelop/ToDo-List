@@ -95,11 +95,9 @@ li {
   display: flex;
   justify-content: center;
 }
-.list-title:hover {
-  color: #00818a;
-}
+
 .list-title:hover ~ .hide-container {
-  z-index: 1;
+  z-index: 999;
   width: 10%;
   transition: 0.3s;
 }
