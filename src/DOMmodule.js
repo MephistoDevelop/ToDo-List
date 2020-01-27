@@ -12,14 +12,15 @@ const DOMmodule = () => {
   const textAdd = document.createElement('div');
   const nameListBox = document.createElement('input');
   const plusBtn = document.createElement('button');
-  const deleteBtn = document.createElement('button');
+  const plusBtnList = document.createElement('button');
+  const cancelBtn = document.createElement('button');
   const titleContainer = document.createElement('div');
   const todoContent = document.createElement('div');
   const taskContainer = document.createElement('div');
   const taskBelowContainer = document.createElement('div');
   const getmainContainer = document.getElementById('row-container');
-  const addContainer = document.getElementById('btn-add-list');
-  const textHide = document.getElementById('add-text');
+  let addContainer = document.getElementById('btn-add-list');
+  let textHide = document.getElementById('add-text');
   const TaskmainContainer = document.getElementById('task-container');
   const todoContainer = document.createElement('div');
   const ulTitleContainer = document.createElement('ul');
@@ -28,7 +29,6 @@ const DOMmodule = () => {
   const titleDescription = document.createElement('li');
   const titleDate = document.createElement('li');
   const titleAction = document.createElement('li');
-
 
   const renderSideBar = (() => {
     navContainer.id = 'nav-container';
@@ -84,7 +84,6 @@ const DOMmodule = () => {
     titleContainer.appendChild(plusBtn);
   })();
 
-
   const renderHeaderTab = (() => {
     const headerTodoContainer = document.createElement('div');
     const headerMainContainer = document.getElementById('task-container');
@@ -113,8 +112,62 @@ const DOMmodule = () => {
     headerMainContainer.appendChild(headerTodoContainer);
   })();
 
+  const renderMenuAddListItem = () => {
+    addContainer = document.getElementById('btn-add-list');
+    textHide = document.getElementById('add-text');
 
-  return { RenderMainContainer, renderSideBar, renderHeaderTab };
+    textHide.className = 'd-none';
+
+    plusBtnList.id = 'btn-list-plus';
+    cancelBtn.id = 'btn-list-delete';
+    nameListBox.id = 'list-name-box';
+
+    plusBtnList.innerText = '+';
+    cancelBtn.innerText = 'X';
+    nameListBox.placeholder = 'Name of List';
+
+    if (nameListBox.classList.contains('d-none')) {
+      nameListBox.classList.remove('d-none');
+      plusBtnList.classList.remove('d-none');
+      cancelBtn.classList.remove('d-none');
+      textHide.className = 'd-none';
+    } else {
+      addContainer.appendChild(nameListBox);
+      addContainer.appendChild(plusBtnList);
+      addContainer.appendChild(cancelBtn);
+    }
+  };
+
+  const AddEventsListeners = (() => {
+    textAdd.addEventListener('click', () => {
+      renderMenuAddListItem();
+    });
+
+    plusBtnList.addEventListener('click', () => {
+      const name = document.getElementById('list-name-box').value;
+      if (name !== '') {
+        // addItemToList(name);
+        //showMessage(
+        //'Task list Added Sucessfully , Now you can fill it with the panel',
+        //'rgba(0, 255, 0, 0.4)',
+        //);
+      } else {
+        // showMessage('You need  to write a valid name..', 'rgba(255, 0, 0, 0.4)');
+      }
+      document.getElementById('list-name-box').value = '';
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      nameListBox.className = 'd-none';
+      cancelBtn.className = 'd-none';
+      plusBtnList.className = 'd-none';
+      textHide.className = 'd-flex  ';
+    });
+  })();
+
+
+
+  return { RenderMainContainer, renderSideBar, renderHeaderTab, AddEventsListeners };
 };
 
 export default DOMmodule;
