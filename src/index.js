@@ -1,6 +1,6 @@
-import MainContainer from './body';
+import RenderMainContainer from './DOMmodule';
 
-MainContainer();
+RenderMainContainer();
 (() => {
   const hash = [
     {
