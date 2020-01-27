@@ -1,3 +1,5 @@
+import { TodoTasks, AddItemToList } from './Todos';
+
 const DOMmodule = () => {
   const mainContainer = document.createElement('div');
   const headerContainer = document.createElement('div');
@@ -18,11 +20,8 @@ const DOMmodule = () => {
   const todoContent = document.createElement('div');
   const taskContainer = document.createElement('div');
   const taskBelowContainer = document.createElement('div');
-  const getmainContainer = document.getElementById('row-container');
   let addContainer = document.getElementById('btn-add-list');
   let textHide = document.getElementById('add-text');
-  const TaskmainContainer = document.getElementById('task-container');
-  let todoContainer = document.createElement('div');
   const ulTitleContainer = document.createElement('ul');
   const titleDone = document.createElement('li');
   const titleName = document.createElement('li');
@@ -32,6 +31,8 @@ const DOMmodule = () => {
   const EditTask = document.createElement('div');
   const AddTask = document.createElement('div');
   const CancelTask = document.createElement('div');
+  const CancelTaskForm = document.createElement('div');
+
 
   const renderMessages = (text, color) => {
     const message = document.getElementById('messages');
@@ -130,8 +131,6 @@ const DOMmodule = () => {
     headerMainContainer.appendChild(headerTodoContainer);
   })();
 
-
-
   const renderMenuAddListItem = () => {
     addContainer = document.getElementById('btn-add-list');
     textHide = document.getElementById('add-text');
@@ -222,6 +221,41 @@ const DOMmodule = () => {
     todoContainerForm.appendChild(formContainer);
   })();
 
+
+  const resetForm = () => {
+    const inputTitleTask = document.getElementById('title-box');
+    const inputDateTask = document.getElementById('calendar-box');
+    const inputDescriptionTask = document.getElementById('description-box');
+    const cbxPriority = document.getElementById('cbx-box');
+    inputTitleTask.value = '';
+    inputDescriptionTask.value = '';
+    inputDateTask.value = '';
+    cbxPriority.selectedIndex = 0;
+  };
+
+  const renderLists = () => {
+    const navContainerList = document.getElementById('nav-container');
+    const titleNav = document.createElement('h3');
+    const buttonAddContainer = document.createElement('div');
+    const listContainer = document.createElement('div');
+    const textAdd = document.createElement('div');
+
+    titleNav.textContent = 'Lists';
+    buttonAddContainer.id = 'btn-add-list';
+    titleNav.id = 'nav-title';
+    listContainer.id = 'list-container';
+    textAdd.innerText = '+ Add List';
+    textAdd.id = 'add-text';
+
+    buttonAddContainer.appendChild(textAdd);
+    navContainerList.appendChild(titleNav);
+    navContainerList.appendChild(buttonAddContainer);
+    navContainerList.appendChild(listContainer);
+
+    //textAdd.onclick = showMenuAdd;
+    TodoTasks.getListsFromStorage();
+  };
+
   const AddEventsListeners = (() => {
     textAdd.addEventListener('click', () => {
       renderMenuAddListItem();
@@ -230,7 +264,7 @@ const DOMmodule = () => {
     plusBtnList.addEventListener('click', () => {
       const name = document.getElementById('list-name-box').value;
       if (name !== '') {
-        // addItemToList(name);
+        AddItemToList(name);
         renderMessages(
           'Task list Added Sucessfully , Now you can fill it with the panel',
           'rgba(0, 255, 0, 0.4)',
@@ -247,18 +281,19 @@ const DOMmodule = () => {
       plusBtnList.className = 'd-none';
       textHide.className = 'd-flex  ';
     });
+
     AddTask.addEventListener('click', () => {
       const titleBox = document.getElementById('title-box').value;
       const dateBox = document.getElementById('calendar-box').value;
       const descriptionBox = document.getElementById('description-box').value;
-      //const cmbxBox = document.getElementById('cbx-box');
-      //    const cmbxValue = cmbxBox.options[cmbxBox.selectedIndex].value.toString();
+      const cmbxBox = document.getElementById('cbx-box');
+      const cmbxValue = cmbxBox.options[cmbxBox.selectedIndex].value.toString();
 
       if (titleBox === '' || descriptionBox === '' || dateBox === '') {
         renderMessages('Fill all of the fields correctly after continue', 'red');
       } else {
         //createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
-        // resetForm();
+        resetForm();
         //allTasks();
         const form = document.getElementById('form-container');
         form.classList.remove('d-flex');
@@ -275,12 +310,19 @@ const DOMmodule = () => {
         form.classList.add('d-none');
       }
       // allTasks();
-      //resetForm();
+      resetForm();
+    });
+
+    CancelTask.addEventListener('click', () => {
+      const form = document.getElementById('form-container');
+      form.classList.remove('d-flex');
+      form.classList.add('d-none');
     });
   })();
 
   return {
-    RenderMainContainer, renderSideBar, renderHeaderTab, AddEventsListeners, renderMessages,
+    RenderMainContainer, renderSideBar, renderHeaderTab, AddEventsListeners, renderMessages, renderForm,
   };
 };
+
 export default DOMmodule;
