@@ -22,13 +22,31 @@ const DOMmodule = () => {
   let addContainer = document.getElementById('btn-add-list');
   let textHide = document.getElementById('add-text');
   const TaskmainContainer = document.getElementById('task-container');
-  const todoContainer = document.createElement('div');
+  let todoContainer = document.createElement('div');
   const ulTitleContainer = document.createElement('ul');
   const titleDone = document.createElement('li');
   const titleName = document.createElement('li');
   const titleDescription = document.createElement('li');
   const titleDate = document.createElement('li');
   const titleAction = document.createElement('li');
+  const EditTask = document.createElement('div');
+  const AddTask = document.createElement('div');
+  const CancelTask = document.createElement('div');
+
+  const renderMessages = (text, color) => {
+    const message = document.getElementById('messages');
+    message.innerText = text;
+    message.style.backgroundColor = color;
+    message.classList.remove('d-none');
+
+    const delayInMilliseconds = 5000;
+
+    setTimeout(() => {
+      message.innerText = '';
+      message.className = 'd-none';
+    }, delayInMilliseconds);
+  };
+
 
   const renderSideBar = (() => {
     navContainer.id = 'nav-container';
@@ -112,6 +130,8 @@ const DOMmodule = () => {
     headerMainContainer.appendChild(headerTodoContainer);
   })();
 
+
+
   const renderMenuAddListItem = () => {
     addContainer = document.getElementById('btn-add-list');
     textHide = document.getElementById('add-text');
@@ -137,6 +157,70 @@ const DOMmodule = () => {
       addContainer.appendChild(cancelBtn);
     }
   };
+  const renderForm = (() => {
+    const todoContainerForm = document.getElementById('todo-list-content');
+    const addLabel = document.createElement('div');
+    const buttonContainer = document.createElement('div');
+    const formContainer = document.createElement('div');
+    const inputIdTask = document.createElement('input');
+    const inputTitleTask = document.createElement('input');
+    const inputDateTask = document.createElement('input');
+    const inputDescriptionTask = document.createElement('textarea');
+    const cbxPriority = document.createElement('select');
+    const optHigh = document.createElement('option');
+    const optMid = document.createElement('option');
+    const optLow = document.createElement('option');
+
+    inputIdTask.id = 'txtid';
+    inputIdTask.type = 'hidden';
+    CancelTask.innerText = 'Cancel';
+    AddTask.innerText = 'Add';
+    AddTask.id = 'add-task';
+    EditTask.innerText = 'Edit';
+    EditTask.id = 'edit-task';
+    EditTask.className = 'd-none';
+    CancelTask.id = 'cancel-task';
+    inputTitleTask.id = 'title-box';
+    optHigh.value = 1;
+    optHigh.innerHTML = 'High';
+    optMid.value = 2;
+    optMid.innerHTML = 'Mid';
+    optLow.value = 3;
+    optLow.innerHTML = 'Low';
+    formContainer.id = 'form-container';
+    cbxPriority.id = 'cbx-priority';
+    addLabel.textContent = 'Add Task';
+    addLabel.id = 'add-task-lbl';
+    inputTitleTask.placeholder = 'Title';
+    inputDateTask.placeholder = 'Due Date';
+    cbxPriority.placeholder = 'Priority';
+    buttonContainer.className = 'd-flex';
+    inputDescriptionTask.placeholder = 'Description';
+    inputTitleTask.className = 'form-boxs';
+    inputDateTask.className = 'form-boxs form-datetime';
+    cbxPriority.className = 'form-boxs';
+    inputDescriptionTask.className = 'form-boxs';
+    formContainer.className = 'd-none';
+    inputDateTask.type = 'date';
+    inputTitleTask.id = 'title-box';
+    inputDateTask.id = 'calendar-box';
+    inputDescriptionTask.id = 'description-box';
+    cbxPriority.id = 'cbx-box';
+    formContainer.appendChild(addLabel);
+    formContainer.appendChild(inputIdTask);
+    formContainer.appendChild(inputTitleTask);
+    formContainer.appendChild(inputDateTask);
+    formContainer.appendChild(inputDescriptionTask);
+    cbxPriority.appendChild(optHigh);
+    cbxPriority.appendChild(optMid);
+    cbxPriority.appendChild(optLow);
+    formContainer.appendChild(cbxPriority);
+    buttonContainer.appendChild(EditTask);
+    buttonContainer.appendChild(AddTask);
+    buttonContainer.appendChild(CancelTask);
+    formContainer.appendChild(buttonContainer);
+    todoContainerForm.appendChild(formContainer);
+  })();
 
   const AddEventsListeners = (() => {
     textAdd.addEventListener('click', () => {
@@ -147,12 +231,12 @@ const DOMmodule = () => {
       const name = document.getElementById('list-name-box').value;
       if (name !== '') {
         // addItemToList(name);
-        //showMessage(
-        //'Task list Added Sucessfully , Now you can fill it with the panel',
-        //'rgba(0, 255, 0, 0.4)',
-        //);
+        renderMessages(
+          'Task list Added Sucessfully , Now you can fill it with the panel',
+          'rgba(0, 255, 0, 0.4)',
+        );
       } else {
-        // showMessage('You need  to write a valid name..', 'rgba(255, 0, 0, 0.4)');
+        renderMessages('You need  to write a valid name..', 'rgba(255, 0, 0, 0.4)');
       }
       document.getElementById('list-name-box').value = '';
     });
@@ -163,11 +247,40 @@ const DOMmodule = () => {
       plusBtnList.className = 'd-none';
       textHide.className = 'd-flex  ';
     });
+    AddTask.addEventListener('click', () => {
+      const titleBox = document.getElementById('title-box').value;
+      const dateBox = document.getElementById('calendar-box').value;
+      const descriptionBox = document.getElementById('description-box').value;
+      //const cmbxBox = document.getElementById('cbx-box');
+      //    const cmbxValue = cmbxBox.options[cmbxBox.selectedIndex].value.toString();
+
+      if (titleBox === '' || descriptionBox === '' || dateBox === '') {
+        renderMessages('Fill all of the fields correctly after continue', 'red');
+      } else {
+        //createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
+        // resetForm();
+        //allTasks();
+        const form = document.getElementById('form-container');
+        form.classList.remove('d-flex');
+        form.classList.add('d-none');
+      }
+    });
+
+    plusBtn.addEventListener('click', () => {
+      const form = document.getElementById('form-container');
+      if (form.classList.contains('d-none')) {
+        form.classList.remove('d-none');
+      } else {
+        form.classList.remove('d-flex');
+        form.classList.add('d-none');
+      }
+      // allTasks();
+      //resetForm();
+    });
   })();
 
-
-
-  return { RenderMainContainer, renderSideBar, renderHeaderTab, AddEventsListeners };
+  return {
+    RenderMainContainer, renderSideBar, renderHeaderTab, AddEventsListeners, renderMessages,
+  };
 };
-
 export default DOMmodule;
