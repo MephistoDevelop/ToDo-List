@@ -20,6 +20,14 @@ const DOMmodule = () => {
   const getmainContainer = document.getElementById('row-container');
   const addContainer = document.getElementById('btn-add-list');
   const textHide = document.getElementById('add-text');
+  const TaskmainContainer = document.getElementById('task-container');
+  const todoContainer = document.createElement('div');
+  const ulTitleContainer = document.createElement('ul');
+  const titleDone = document.createElement('li');
+  const titleName = document.createElement('li');
+  const titleDescription = document.createElement('li');
+  const titleDate = document.createElement('li');
+  const titleAction = document.createElement('li');
 
 
   const renderSideBar = (() => {
@@ -77,7 +85,36 @@ const DOMmodule = () => {
   })();
 
 
-  return { RenderMainContainer, renderSideBar };
+  const renderHeaderTab = (() => {
+    const headerTodoContainer = document.createElement('div');
+    const headerMainContainer = document.getElementById('task-container');
+    headerTodoContainer.id = 'toDo-item-container';
+    headerTodoContainer.style.width = '100%';
+    ulTitleContainer.className = 'navbar';
+    titleAction.textContent = 'Action';
+    titleDone.textContent = 'Done?';
+    titleDone.className = 'header-task-table';
+    titleName.className = 'header-task-table';
+    titleDescription.className = 'header-task-table';
+    titleDate.className = 'header-task-table';
+    titleAction.className = 'header-task-table';
+
+    titleName.textContent = 'Title';
+    titleDescription.textContent = 'Description';
+    titleDate.textContent = 'Due Date';
+    ulTitleContainer.id = 'title-task-container';
+
+    ulTitleContainer.appendChild(titleDone);
+    ulTitleContainer.appendChild(titleName);
+    ulTitleContainer.appendChild(titleDescription);
+    ulTitleContainer.appendChild(titleDate);
+    ulTitleContainer.appendChild(titleAction);
+    headerTodoContainer.appendChild(ulTitleContainer);
+    headerMainContainer.appendChild(headerTodoContainer);
+  })();
+
+
+  return { RenderMainContainer, renderSideBar, renderHeaderTab };
 };
 
 export default DOMmodule;
