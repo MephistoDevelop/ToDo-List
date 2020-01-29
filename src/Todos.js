@@ -15,28 +15,7 @@ const getListsFromStorage = () => {
       i += 1;
     } else i += 1;
   }
-};
-const getTasks = () => {
-  const projectName = JSON.parse(localStorage.getItem('projectName')) || 'My Personal List';
-  const data = JSON.parse(localStorage.getItem(projectName));
-  console.log('whats up !' + data);
-  const mainContainer = document.getElementById('tasks-container');
-
-  while (mainContainer.lastChild) {
-    mainContainer.removeChild(mainContainer.firstChild);
-  }
-  data.forEach((obj) => {
-    // eslint-disable-next-line no-use-before-define
-    renderTasks(
-      obj.id,
-      obj.title,
-      obj.description,
-      obj.date,
-      obj.priority,
-      obj.done,
-    );
-  });
-};
+}
 
 const AddItemToList = (name) => {
   const listContainer = document.getElementById('list-container');
@@ -69,7 +48,7 @@ const AddItemToList = (name) => {
 
   showItem.addEventListener('click', () => {
     localStorage.setItem('projectName', JSON.stringify(showItem.value));
-    getTasks();
+    allTasks();
   });
 
   deleteItem.addEventListener('click', () => {
@@ -186,15 +165,15 @@ const createTodoItem = (
 };
 
 const allTasks = () => {
-  const projectName = JSON.parse(localStorage.getItem('My Personal List'));
-  const data = localStorage.getItem(projectName);
+  const projectName = JSON.parse(localStorage.getItem('projectName'));
+  const data = JSON.parse(localStorage.getItem(projectName));
   const mainContainer = document.getElementById('tasks-container');
 
   while (mainContainer.lastChild) {
     mainContainer.removeChild(mainContainer.firstChild);
   }
-  console.log('ya entre: while, ?' + projectName);
-  projectName.forEach((obj) => {
+  console.log('ya entre: while, no?' + data);
+  data.forEach((obj) => {
     // eslint-disable-next-line no-use-before-define
 
     renderTasks(
@@ -340,5 +319,19 @@ const renderTasks = (
   mainContainer.appendChild(itemContainer);
 };
 
+function allLists() {
+  const keys = Object.keys(localStorage);
+  let i = 0;
+  const listNames = [];
+  while (i < keys.length) {
+    const name = localStorage.key(i);
+    if (name !== 'projectName') {
+      listNames.push(name);
+      AddItemToList(name);
+      i += 1;
+    } else i += 1;
+  }
+}
 
-export { getListsFromStorage, AddItemToList, getTasks, createTodoItem, allTasks };
+
+export { getListsFromStorage, AddItemToList, createTodoItem, allTasks, allLists };

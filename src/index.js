@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
 import renderMainContainer from './DOMmodule';
-import { allTasks, getTasks } from './Todos';
+import { allTasks, getListsFromStorage } from './Todos';
 
 
 renderMainContainer();
@@ -80,3 +80,4 @@ renderMainContainer();
 })();
 
 allTasks();
+getListsFromStorage();
