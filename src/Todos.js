@@ -15,7 +15,7 @@ const getListsFromStorage = () => {
       i += 1;
     } else i += 1;
   }
-}
+};
 
 const AddItemToList = (name) => {
   const listContainer = document.getElementById('list-container');
@@ -172,7 +172,6 @@ const allTasks = () => {
   while (mainContainer.lastChild) {
     mainContainer.removeChild(mainContainer.firstChild);
   }
-  console.log('ya entre: while, no?' + data);
   data.forEach((obj) => {
     // eslint-disable-next-line no-use-before-define
 
@@ -223,19 +222,23 @@ const renderTasks = (
   deleteBtn.textContent = 'Delete';
   liDoneCheck.id = `check${id}`;
   if (Done) liDoneCheck.checked = true;
+
   liDoneCheck.addEventListener('change', () => {
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     const arr = JSON.parse(localStorage.getItem(projectName));
-    arr.splice(id - 1, 1);
+
+    //arr.splice(id - 1, 1);
 
     if (liDoneCheck.checked) {
       arr.forEach((obj) => {
+        console.log('Checkeado: ' + JSON.stringify(obj));
         if (obj.id === id) {
           obj.done = true;
         }
       });
       localStorage.setItem(projectName, JSON.stringify(arr));
     } else {
+      console.log('No Chequeado:: ' + JSON.stringify(arr));
       arr.forEach((obj) => {
         if (obj.id === id) {
           obj.done = false;

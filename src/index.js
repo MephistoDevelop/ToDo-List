@@ -12,7 +12,7 @@ renderMainContainer();
       title: 'My Task 1',
       description: 'My Description Example',
       priority: '1',
-      date: '01-01-20',
+      date: '2019-11-08',
       done: true,
     },
     {
@@ -36,7 +36,7 @@ renderMainContainer();
       title: 'My Task 4',
       description: 'My Description Example 4',
       priority: '1',
-      date: '30-02-20',
+      date: '2019-12-10',
       done: false,
     },
   ];
@@ -46,7 +46,7 @@ renderMainContainer();
       title: 'My Task 1',
       description: 'My Description Example',
       priority: '3',
-      date: '01-01-20',
+      date: '2019-03-21',
       done: false,
     },
     {
@@ -70,14 +70,14 @@ renderMainContainer();
       title: 'My Task 4',
       description: 'My Description Example 4',
       priority: '2',
-      date: '30-02-20',
+      date: '2020-02-04',
       done: false,
     },
   ];
   localStorage.setItem('My project Example', JSON.stringify(hash));
   localStorage.setItem('My Personal List', JSON.stringify(hash2));
-
+  getListsFromStorage();
+  allTasks();
 })();
 
-allTasks();
-getListsFromStorage();
+

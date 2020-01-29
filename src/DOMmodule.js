@@ -458,10 +458,4 @@ const DOMmodule = () => {
   };
 };
 
-(() => {
-  console.log('no funkooo');
-  //TodoTasks.getListsFromStorage;
-  //console.log('o si ?' + getTasks());
-})();
-
 export default DOMmodule;
