@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { getListsFromStorage, AddItemToList, getTasks } from './Todos';
+import { getListsFromStorage, AddItemToList, getTasks, createTodoItem } from './Todos';
 
 const DOMmodule = () => {
   const mainContainer = document.createElement('div');
@@ -415,6 +415,7 @@ const DOMmodule = () => {
     });
 
     AddTask.addEventListener('click', () => {
+      console.log('Add tasks pressed');
       const titleBox = document.getElementById('title-box').value;
       const dateBox = document.getElementById('calendar-box').value;
       const descriptionBox = document.getElementById('description-box').value;
@@ -424,7 +425,7 @@ const DOMmodule = () => {
       if (titleBox === '' || descriptionBox === '' || dateBox === '') {
         renderMessages('Fill all of the fields correctly after continue', 'red');
       } else {
-        //createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
+        createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
         resetForm();
         //allTasks();
         const form = document.getElementById('form-container');

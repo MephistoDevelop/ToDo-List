@@ -1,9 +1,10 @@
 /* eslint-disable import/no-duplicates */
 import renderMainContainer from './DOMmodule';
-import { getTasks } from './Todos';
+import { allTasks, getTasks } from './Todos';
 
 
 renderMainContainer();
+
 (() => {
   const hash = [
     {
@@ -77,3 +78,5 @@ renderMainContainer();
   localStorage.setItem('My Personal List', JSON.stringify(hash2));
 
 })();
+
+allTasks();

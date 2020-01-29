@@ -334,6 +334,7 @@ function hideForm() {
     form.classList.add('d-none');
   }
 }
+
 function renderForm() {
   const todoContainer = document.getElementById('todo-list-content');
   const addLabel = document.createElement('div');
@@ -464,4 +465,5 @@ export {
   allTasks,
   cleanTasks,
   resetForm,
+  allTasks,
 };
