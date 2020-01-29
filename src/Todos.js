@@ -1,39 +1,42 @@
-const TodoTasks = () => {
-  const getTasks = () => {
-    const projectName = JSON.parse(localStorage.getItem('projectName'));
-    const data = JSON.parse(localStorage.getItem(projectName));
+/* eslint-disable import/no-duplicates */
+/* eslint-disable import/no-cycle */
+import showMessage from './messages';
+import renderTasks from './DOMmodule';
 
-    const mainContainer = document.getElementById('tasks-container');
+const getListsFromStorage = () => {
+  console.log('soy yo');
+  const keys = Object.keys(localStorage);
+  let i = 0;
+  const listNames = [];
+  while (i < keys.length) {
+    const name = localStorage.key(i);
+    if (name !== 'projectName') {
+      listNames.push(name);
+      AddItemToList(name);
+      i += 1;
+    } else i += 1;
+  }
+};
+const getTasks = () => {
+  const projectName = JSON.parse(localStorage.getItem('projectName')) || 'My Personal List';
+  const data = JSON.parse(localStorage.getItem(projectName));
+  console.log('whats up !' + data);
+  const mainContainer = document.getElementById('tasks-container');
 
-    while (mainContainer.lastChild) {
-      mainContainer.removeChild(mainContainer.firstChild);
-    }
-    data.forEach((obj) => {
-      // eslint-disable-next-line no-use-before-define
-      // renderTasks(
-      //   obj.id,
-      //   obj.title,
-      //   obj.description,
-      //   obj.date,
-      //   obj.priority,
-      //   obj.done,
-      // );
-    });
-  };
-  const getListsFromStorage = () => {
-    const keys = Object.keys(localStorage);
-    let i = 0;
-    const listNames = [];
-    while (i < keys.length) {
-      const name = localStorage.key(i);
-      if (name !== 'projectName') {
-        listNames.push(name);
-        AddItemToList(name);
-        i += 1;
-      } else i += 1;
-    }
-  };
-  return { getTasks, getListsFromStorage };
+  while (mainContainer.lastChild) {
+    mainContainer.removeChild(mainContainer.firstChild);
+  }
+  data.forEach((obj) => {
+    // eslint-disable-next-line no-use-before-define
+    renderTasks(
+      obj.id,
+      obj.title,
+      obj.description,
+      obj.date,
+      obj.priority,
+      obj.done,
+    );
+  });
 };
 
 const AddItemToList = (name) => {
@@ -64,6 +67,18 @@ const AddItemToList = (name) => {
 
   listItem.appendChild(hideContainer);
   listContainer.appendChild(listItem);
+
+  showItem.addEventListener('click', () => {
+    localStorage.setItem('projectName', JSON.stringify(showItem.value));
+    getTasks();
+  });
+
+  deleteItem.addEventListener('click', () => {
+    document.getElementById(`${name}`).remove();
+    localStorage.removeItem(name);
+    showMessage('To do List Removed.', 'rgba(255, 0, 0, 0.4)');
+    //cleanTasks();
+  });
 };
 
-export { TodoTasks, AddItemToList };
+export { getListsFromStorage, AddItemToList, getTasks };

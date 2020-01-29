@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import showMessage from './messages';
 // eslint-disable-next-line import/no-cycle
-import { allLists, allTasks, cleanTasks } from './todos';
+import { allLists, allTasks, cleanTasks } from './todosold';
 
 function renderList() {
   const navContainer = document.getElementById('nav-container');
@@ -77,13 +77,13 @@ function showMenuAdd() {
 
   deleteBtn.addEventListener('click', () => {
     nameListBox.className = 'd-none';
-    this.className = 'd-none';
+    deleteBtn.className = 'd-none';
     plusBtn.className = 'd-none';
     textHide.className = 'd-flex  ';
   });
 }
 
-function addItemToList(name) {
+const addItemToList = (name) => {
   const listContainer = document.getElementById('list-container');
   const listItem = document.createElement('div');
   const itemName = document.createElement('div');
@@ -121,6 +121,6 @@ function addItemToList(name) {
 
   listItem.appendChild(hideContainer);
   listContainer.appendChild(listItem);
-}
+};
 
 export { mySideBar, addItemToList };

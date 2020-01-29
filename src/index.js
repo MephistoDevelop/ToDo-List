@@ -1,6 +1,9 @@
-import RenderMainContainer from './DOMmodule';
+/* eslint-disable import/no-duplicates */
+import renderMainContainer from './DOMmodule';
+import { getTasks } from './Todos';
 
-RenderMainContainer();
+
+renderMainContainer();
 (() => {
   const hash = [
     {
@@ -72,4 +75,5 @@ RenderMainContainer();
   ];
   localStorage.setItem('My project Example', JSON.stringify(hash));
   localStorage.setItem('My Personal List', JSON.stringify(hash2));
+
 })();
