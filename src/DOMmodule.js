@@ -1,5 +1,7 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
-import { getListsFromStorage, AddItemToList, getTasks, createTodoItem } from './Todos';
+import { getListsFromStorage, AddItemToList, allTasks, createTodoItem } from './Todos';
 
 const DOMmodule = () => {
   const mainContainer = document.createElement('div');
@@ -34,7 +36,6 @@ const DOMmodule = () => {
   const CancelTask = document.createElement('div');
   const CancelTaskForm = document.createElement('div');
   const itemListName = document.createElement('div');
-
 
   const renderMessages = (text, color) => {
     const message = document.getElementById('messages');
@@ -225,6 +226,34 @@ const DOMmodule = () => {
     buttonContainer.appendChild(CancelTask);
     formContainer.appendChild(buttonContainer);
     todoContainerForm.appendChild(formContainer);
+
+
+    EditTask.addEventListener('click', () => {
+      AddTask.classList.remove('d-none');
+      EditTask.className = 'd-none';
+      const id = document.getElementById('txtid').value;
+      const projectName = JSON.parse(localStorage.getItem('projectName'));
+      const arr = JSON.parse(localStorage.getItem(projectName));
+
+      arr.forEach((obj) => {
+        if (obj.id.toString() === id) {
+          obj.title = document.getElementById('title-box').value;
+          obj.date = document.getElementById('calendar-box').value;
+          obj.description = document.getElementById('description-box').value;
+          const cmbxBox = document.getElementById('cbx-box');
+          const cmbxValue = cmbxBox.options[
+            cmbxBox.selectedIndex
+          ].value.toString();
+          obj.priority = cmbxValue;
+        }
+      });
+
+      localStorage.setItem(projectName, JSON.stringify(arr));
+
+      resetForm();
+      hideForm();
+      allTasks();
+    });
   })();
 
   const resetForm = () => {
@@ -328,6 +357,7 @@ const DOMmodule = () => {
     });
 
     EditBtn.addEventListener('click', () => {
+      console.log('edit pressed');
       const AddTaskBtnEdit = document.getElementById('add-task');
       const EditTaskBtnEdit = document.getElementById('edit-task');
       AddTaskBtnEdit.className = 'd-none';
@@ -419,7 +449,6 @@ const DOMmodule = () => {
     });
 
     AddTask.addEventListener('click', () => {
-      console.log('Add tasks pressed');
       const titleBox = document.getElementById('title-box').value;
       const dateBox = document.getElementById('calendar-box').value;
       const descriptionBox = document.getElementById('description-box').value;
@@ -451,9 +480,12 @@ const DOMmodule = () => {
     });
 
     CancelTask.addEventListener('click', () => {
+      const editBtn = document.getElementById('edit-task');
       const form = document.getElementById('form-container');
       form.classList.remove('d-flex');
       form.classList.add('d-none');
+      AddTask.classList.remove('d-none');
+      editBtn.classList.add('d-none');
     });
   })();
 

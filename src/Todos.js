@@ -1,7 +1,17 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable import/no-cycle */
 import showMessage from './messages';
 
+const hideForm = () => {
+  const form = document.getElementById('form-container');
+  if (form.classList.contains('d-none')) {
+    form.classList.remove('d-none');
+  } else {
+    form.classList.remove('d-flex');
+    form.classList.add('d-none');
+  }
+};
 const cleanTasks = () => {
   const mainContainer = document.getElementById('tasks-container');
   const btnEdit = document.getElementById('edit-task');
@@ -16,7 +26,6 @@ const cleanTasks = () => {
   }
 };
 const getListsFromStorage = () => {
-  console.log('soy yo');
   const keys = Object.keys(localStorage);
   let i = 0;
   const listNames = [];
@@ -64,7 +73,7 @@ const AddItemToList = (name) => {
     localStorage.setItem('projectName', JSON.stringify(showItem.value));
     const projectName = localStorage.getItem('projectName');
     nameTag.textContent = `List Name: ${projectName}`;
-    console.log('NAme: ' + projectName);
+
     allTasks();
   });
 
@@ -283,17 +292,19 @@ const renderTasks = (
 
   deleteBtn.addEventListener('click', () => {
     const projectName = JSON.parse(localStorage.getItem('projectName'));
-    const arr = JSON.parse(localStorage.getItem(projectName));
+    let arr = JSON.parse(localStorage.getItem(projectName));
     const posItem = (arr) => {
-      for (let i = 0; i < arr.length - 1; i += 1) {
+      for (let i = 0; i < arr.length; i += 1) {
         if (arr[i].id === id) {
           return i;
         }
       }
     };
-    console.log(posItem);
-    arr.splice(id - 1, 1);
-
+    if ((arr.length === 1)) {
+      arr = [];
+    } else {
+      arr.splice(posItem(arr), 1);
+    }
     localStorage.setItem(projectName, JSON.stringify(arr));
     allTasks();
   });
@@ -364,7 +375,6 @@ const renderTasks = (
 };
 
 const allLists = () => {
-
   const keys = Object.keys(localStorage);
   let i = 0;
   let name = '';
@@ -379,5 +389,6 @@ const allLists = () => {
   }
 };
 
-
-export { getListsFromStorage, AddItemToList, createTodoItem, allTasks, allLists };
+export {
+  getListsFromStorage, AddItemToList, createTodoItem, allTasks, allLists,
+};

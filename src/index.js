@@ -79,5 +79,3 @@ renderMainContainer();
   getListsFromStorage();
   allTasks();
 })();
-
-
