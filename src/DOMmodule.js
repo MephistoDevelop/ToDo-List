@@ -33,6 +33,7 @@ const DOMmodule = () => {
   const AddTask = document.createElement('div');
   const CancelTask = document.createElement('div');
   const CancelTaskForm = document.createElement('div');
+  const itemListName = document.createElement('div');
 
 
   const renderMessages = (text, color) => {
@@ -80,6 +81,8 @@ const DOMmodule = () => {
 
     titleContainer.textContent = 'Tasks To Do';
     titleContainer.id = 'todo-title-container';
+    itemListName.id = 'item-name';
+    itemListName.textContent = '------';
     plusBtn.id = 'btn-list-plus';
     plusBtn.innerText = '+';
     taskBelowContainer.id = 'tasks-container';
@@ -98,6 +101,7 @@ const DOMmodule = () => {
     const c = document.getElementById('todo-container');
 
     c.appendChild(titleContainer);
+    c.appendChild(itemListName);
     c.appendChild(todoContent);
     c.appendChild(taskContainer);
     c.appendChild(taskBelowContainer);

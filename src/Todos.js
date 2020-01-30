@@ -2,6 +2,19 @@
 /* eslint-disable import/no-cycle */
 import showMessage from './messages';
 
+const cleanTasks = () => {
+  const mainContainer = document.getElementById('tasks-container');
+  const btnEdit = document.getElementById('edit-task');
+  const btnAdd = document.getElementById('add-task');
+  const nameListTag = document.getElementById('item-name');
+  btnAdd.classList.remove('d-none');
+  btnEdit.className = 'd-none';
+  nameListTag.innerText = '------';
+
+  while (mainContainer.lastChild) {
+    mainContainer.removeChild(mainContainer.firstChild);
+  }
+};
 const getListsFromStorage = () => {
   console.log('soy yo');
   const keys = Object.keys(localStorage);
@@ -47,7 +60,11 @@ const AddItemToList = (name) => {
   listContainer.appendChild(listItem);
 
   showItem.addEventListener('click', () => {
+    const nameTag = document.getElementById('item-name');
     localStorage.setItem('projectName', JSON.stringify(showItem.value));
+    const projectName = localStorage.getItem('projectName');
+    nameTag.textContent = `List Name: ${projectName}`;
+    console.log('NAme: ' + projectName);
     allTasks();
   });
 
@@ -55,7 +72,8 @@ const AddItemToList = (name) => {
     document.getElementById(`${name}`).remove();
     localStorage.removeItem(name);
     showMessage('To do List Removed.', 'rgba(255, 0, 0, 0.4)');
-    //cleanTasks();
+
+    cleanTasks();
   });
 };
 
@@ -136,6 +154,26 @@ const createTodoItem = (
       hash.push(newHash);
 
       localStorage.setItem(projectName, JSON.stringify(hash));
+
+      liDoneCheck.addEventListener('change', () => {
+        const arr = JSON.parse(localStorage.getItem(projectName));
+
+        if (liDoneCheck.checked) {
+          arr.forEach((obj) => {
+            if (obj.id === ID) {
+              obj.done = true;
+            }
+          });
+          localStorage.setItem(projectName, JSON.stringify(arr));
+        } else {
+          arr.forEach((obj) => {
+            if (obj.id === ID) {
+              obj.done = false;
+            }
+          });
+          localStorage.setItem(projectName, JSON.stringify(arr));
+        }
+      });
     }
   } catch (error) { showMessage(`Error... ${error}`, 'red'); }
 
@@ -186,7 +224,6 @@ const allTasks = () => {
   });
 };
 
-
 const renderTasks = (
   id = 1,
   title = 'My Task',
@@ -227,18 +264,14 @@ const renderTasks = (
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     const arr = JSON.parse(localStorage.getItem(projectName));
 
-    //arr.splice(id - 1, 1);
-
     if (liDoneCheck.checked) {
       arr.forEach((obj) => {
-        console.log('Checkeado: ' + JSON.stringify(obj));
         if (obj.id === id) {
           obj.done = true;
         }
       });
       localStorage.setItem(projectName, JSON.stringify(arr));
     } else {
-      console.log('No Chequeado:: ' + JSON.stringify(arr));
       arr.forEach((obj) => {
         if (obj.id === id) {
           obj.done = false;
@@ -251,6 +284,14 @@ const renderTasks = (
   deleteBtn.addEventListener('click', () => {
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     const arr = JSON.parse(localStorage.getItem(projectName));
+    const posItem = (arr) => {
+      for (let i = 0; i < arr.length - 1; i += 1) {
+        if (arr[i].id === id) {
+          return i;
+        }
+      }
+    };
+    console.log(posItem);
     arr.splice(id - 1, 1);
 
     localStorage.setItem(projectName, JSON.stringify(arr));
@@ -322,19 +363,21 @@ const renderTasks = (
   mainContainer.appendChild(itemContainer);
 };
 
-function allLists() {
+const allLists = () => {
+
   const keys = Object.keys(localStorage);
   let i = 0;
+  let name = '';
   const listNames = [];
   while (i < keys.length) {
-    const name = localStorage.key(i);
+    name = localStorage.key(i);
     if (name !== 'projectName') {
       listNames.push(name);
       AddItemToList(name);
       i += 1;
     } else i += 1;
   }
-}
+};
 
 
 export { getListsFromStorage, AddItemToList, createTodoItem, allTasks, allLists };
