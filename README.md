@@ -4,11 +4,7 @@
 
 ### Desktop view
 
-![screenshot](./dist/img/desktop.png)
-
-### Mobile view
-
-![screenshot](./dist/img/mobile.png)
+![screenshot](./todo.gif)
 
 Javascript with Webpack project from [The Odin Project curriculum](https://www.theodinproject.com/courses/javascript/lessons/todo-list)
 
