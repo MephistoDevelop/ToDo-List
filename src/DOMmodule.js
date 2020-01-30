@@ -69,7 +69,6 @@ const DOMmodule = () => {
     navContainer.appendChild(buttonAddContainer);
     navContainer.appendChild(listContainer);
     rowContainer.appendChild(navContainer);
-    // textAdd.onclick = showMenuAdd;
   })();
 
   const RenderMainContainer = (() => {
@@ -460,7 +459,6 @@ const DOMmodule = () => {
       } else {
         createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
         resetForm();
-        // allTasks();
         const form = document.getElementById('form-container');
         form.classList.remove('d-flex');
         form.classList.add('d-none');
@@ -475,7 +473,7 @@ const DOMmodule = () => {
         form.classList.remove('d-flex');
         form.classList.add('d-none');
       }
-      // allTasks();
+      allTasks();
       resetForm();
     });
 
