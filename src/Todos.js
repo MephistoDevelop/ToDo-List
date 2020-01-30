@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable import/no-cycle */
@@ -293,6 +294,8 @@ const renderTasks = (
   deleteBtn.addEventListener('click', () => {
     const projectName = JSON.parse(localStorage.getItem('projectName'));
     let arr = JSON.parse(localStorage.getItem(projectName));
+    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line consistent-return
     const posItem = (arr) => {
       for (let i = 0; i < arr.length; i += 1) {
         if (arr[i].id === id) {
@@ -390,5 +393,5 @@ const allLists = () => {
 };
 
 export {
-  getListsFromStorage, AddItemToList, createTodoItem, allTasks, allLists,
+  getListsFromStorage, AddItemToList, createTodoItem, allTasks, allLists, hideForm,
 };

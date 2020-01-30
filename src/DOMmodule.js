@@ -1,7 +1,10 @@
+/* eslint-disable max-len */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
-import { getListsFromStorage, AddItemToList, allTasks, createTodoItem } from './Todos';
+import {
+  getListsFromStorage, AddItemToList, allTasks, createTodoItem, hideForm,
+} from './Todos';
 
 const DOMmodule = () => {
   const mainContainer = document.createElement('div');
@@ -34,7 +37,6 @@ const DOMmodule = () => {
   const EditTask = document.createElement('div');
   const AddTask = document.createElement('div');
   const CancelTask = document.createElement('div');
-  const CancelTaskForm = document.createElement('div');
   const itemListName = document.createElement('div');
 
   const renderMessages = (text, color) => {
@@ -67,7 +69,7 @@ const DOMmodule = () => {
     navContainer.appendChild(buttonAddContainer);
     navContainer.appendChild(listContainer);
     rowContainer.appendChild(navContainer);
-    //textAdd.onclick = showMenuAdd;
+    // textAdd.onclick = showMenuAdd;
   })();
 
   const RenderMainContainer = (() => {
@@ -286,7 +288,7 @@ const DOMmodule = () => {
     navContainerList.appendChild(buttonAddContainerLists);
     navContainerList.appendChild(listContainerId);
 
-    //textAdd.onclick = showMenuAdd;
+    // textAdd.onclick = showMenuAdd;
     getListsFromStorage();
   };
 
@@ -357,7 +359,6 @@ const DOMmodule = () => {
     });
 
     EditBtn.addEventListener('click', () => {
-      console.log('edit pressed');
       const AddTaskBtnEdit = document.getElementById('add-task');
       const EditTaskBtnEdit = document.getElementById('edit-task');
       AddTaskBtnEdit.className = 'd-none';
@@ -460,7 +461,7 @@ const DOMmodule = () => {
       } else {
         createTodoItem(titleBox, descriptionBox, dateBox, cmbxValue);
         resetForm();
-        //allTasks();
+        // allTasks();
         const form = document.getElementById('form-container');
         form.classList.remove('d-flex');
         form.classList.add('d-none');
