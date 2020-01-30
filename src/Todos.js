@@ -184,6 +184,39 @@ const createTodoItem = (
           localStorage.setItem(projectName, JSON.stringify(arr));
         }
       });
+      deleteBtn.addEventListener('click', () => {
+        const arr = JSON.parse(localStorage.getItem(projectName));
+        arr.splice(ID - 1, 1);
+        localStorage.setItem(projectName, JSON.stringify(arr));
+        allTasks();
+      });
+
+      EditBtn.addEventListener('click', () => {
+        const AddTaskBtnEdit = document.getElementById('add-task');
+        const EditTaskBtnEdit = document.getElementById('edit-task');
+        AddTaskBtnEdit.className = 'd-none';
+        EditTaskBtnEdit.classList.remove('d-none');
+        const form = document.getElementById('form-container');
+        form.classList.remove('d-none');
+        form.classList.add('d-flex');
+        const arr = JSON.parse(localStorage.getItem(projectName));
+        arr.forEach((obj) => {
+          if (obj.id === ID) {
+            const inputIdTask = document.getElementById('txtid');
+            const inputTitleTask = document.getElementById('title-box');
+            const inputDateTask = document.getElementById('calendar-box');
+            const inputDescriptionTask = document.getElementById('description-box');
+            const cbxPriority = document.getElementById('cbx-box');
+            inputIdTask.value = ID;
+            inputTitleTask.value = obj.title;
+            inputDescriptionTask.value = obj.description;
+            inputDateTask.value = obj.date;
+            if (obj.priority === '1') cbxPriority.selectedIndex = 0;
+            if (obj.priority === '2') cbxPriority.selectedIndex = 1;
+            if (obj.priority === '3') cbxPriority.selectedIndex = 2;
+          }
+        });
+      });
     }
   } catch (error) { showMessage(`Error... ${error}`, 'red'); }
 

@@ -288,7 +288,6 @@ const DOMmodule = () => {
     navContainerList.appendChild(buttonAddContainerLists);
     navContainerList.appendChild(listContainerId);
 
-    // textAdd.onclick = showMenuAdd;
     getListsFromStorage();
   };
 
@@ -355,7 +354,7 @@ const DOMmodule = () => {
       arr.splice(id - 1, 1);
 
       localStorage.setItem(projectName, JSON.stringify(arr));
-      //  allTasks();
+      allTasks();
     });
 
     EditBtn.addEventListener('click', () => {
