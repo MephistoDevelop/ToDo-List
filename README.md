@@ -18,6 +18,11 @@ Javascript with Webpack project from [The Odin Project curriculum](https://www.t
 
 [Live Demo Link](https://mephistodevelop.github.io/ToDo-List/)
 
+## Future Features
+
+- store data on remote server
+- reminders with notifications
+
 ## Getting Started
 
 ### Prerequisites
