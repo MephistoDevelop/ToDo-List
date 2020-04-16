@@ -98,15 +98,15 @@ Installing Bootstrap
 
 Use the following command to install Bootstrap and its peer dependencies, jQuery and Popper:
 
-\$ npm install bootstrap jquery popper.js --save
+`$>npm install bootstrap jquery popper.js --save`
 
 If you choose to import Bootstrap’s JavaScript plugins individually as needed, you must also install an exports-loader.
 
-\$ npm install exports-loader --save-dev
+`$> npm install exports-loader --save-dev`
 
 You’ll need to install the required loaders and post CSS plugins for compiling and bundling Bootstrap precompiled Sass files.
 
-\$ npm install autoprefixer css-loader node-sass postcss-loader sass-loader style-loader --save-dev
+`$> npm install autoprefixer css-loader node-sass postcss-loader sass-loader style-loader --save-dev`
 
 ### Deployment
 
