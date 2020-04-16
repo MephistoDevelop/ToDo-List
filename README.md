@@ -1,6 +1,6 @@
 # To-Do List Project
 
-> Project taken from Microverse Curriculum from [The Odin Page project Site]().
+> To-Do List project to manage your times and tasks made with JavaScript and Webpack deployed on git-hub Pages
 
 ### Desktop view
 
@@ -8,7 +8,7 @@
 
 Javascript with Webpack project from [The Odin Project curriculum](https://www.theodinproject.com/courses/javascript/lessons/todo-list)
 
-## Built With Javascript and Webpack
+## Built With:
 
 - Html,Css,JavaScript
 - Webpack
@@ -20,39 +20,30 @@ Javascript with Webpack project from [The Odin Project curriculum](https://www.t
 
 ## Future Features
 
-- store data on remote server
-- reminders with notifications
+- Store data on a remote server
+- Notifications reminders.
 
 ## Getting Started
 
 ### Prerequisites
 
--before running this project you will need to install before webpack and configure the live server on your webpac.config file. you can check more about it on this [page](https://webpack.js.org/guides/installation/).
+-before running this project you will need to install before webpack and configure the live server on your webpack.config file. you can check more about it on this [page](https://webpack.js.org/guides/installation/).
+
 [npm install and config: ](https://docs.npmjs.com/cli/install)
 
 ### Setup
+To use this project you will need to download this repository onto your computer. Afterwards, you will need to install webpack and npm to correctly run this project. In the package.json file, input this
 
-To use this project you will need to download this repository and put it in on your computer.
-after you will need to install a webpack and npm to run correctly this project.
+in package.json file on the rules we are going to put this:
 
-in `package.json` file on the rules we are going to put this:
-
-```
  "scripts": {
  "test": "echo \"Error: no test specified\" && exit >1",
  "build": "webpack --mode production",
  "builddev": "webpack --mode development",
  "start": "webpack-dev-server --mode development >--open"
  }
-```
+In the webpack.config.js file we are going to input this config in order to use live-sync browser reloaded automatically using npm run start
 
-Install Webpack live Server plugin with this command:
-
-`npm install --save-dev browser-sync-webpack-plugin`
-
-in `webpack.config.js` file we are going to put this config to use live-sync browser reloaded automatly using `npm run start` :
-
-```
 const path = require('path');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
@@ -94,7 +85,6 @@ server: { baseDir: ['dist'] },
 }),
 ],
 };
-```
 
 Installing Bootstrap
 
@@ -112,25 +102,20 @@ You’ll need to install the required loaders and post CSS plugins for compiling
 
 ### Deployment
 
-To deploy the application and see it on the browser you can use npm to do that task on the server provider by webpack. to run the live server you will need to open your project folder terminal and run these commands:
+To deploy the application and view it on your browser, open your project folder terminal and run these command:" ; "To run the linter files you will need to run these command on the terminal
 
-```
 `npm install`
 `npm run build`
 `npm i -D webpack-dev-server`
 `npm i browser-sync --save`
-''
-```
 
-To Run the Linter files you will need to run these commands on the terminal :
-
-```
 `npm install eslint eslint-config-airbnb --save-dev`
 `npx eslint --init`
-`npx eslint`
-```
+`npx client`
 
-after you will need to enter to [Stickler Page](https://stickler-ci.com/) and activate your repository.
+After, you will need to enter to Stickler Page and activate your repository.
+
+[Stickler Page](https://stickler-ci.com/) 
 
 ## Authors
 
@@ -153,7 +138,3 @@ Give an ⭐️ if you like this project!
 ## 📝 License
 
 This project is [MIT](lic.url) licensed.
-
-### Author:
-
-[Cristian Ines (MephistoDevelop)](https://github.com/MephistoDevelop)
