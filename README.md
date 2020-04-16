@@ -32,18 +32,23 @@ Javascript with Webpack project from [The Odin Project curriculum](https://www.t
 [npm install and config: ](https://docs.npmjs.com/cli/install)
 
 ### Setup
+
 To use this project you will need to download this repository onto your computer. Afterwards, you will need to install webpack and npm to correctly run this project. In the package.json file, input this
 
-in package.json file on the rules we are going to put this:
+in `package.json` file on the rules we are going to put this:
 
+```
  "scripts": {
  "test": "echo \"Error: no test specified\" && exit >1",
  "build": "webpack --mode production",
  "builddev": "webpack --mode development",
  "start": "webpack-dev-server --mode development >--open"
  }
-In the webpack.config.js file we are going to input this config in order to use live-sync browser reloaded automatically using npm run start
+```
 
+In the `webpack.config.js` file we are going to input this config in order to use live-sync browser reloaded automatically using `npm run start`
+
+```
 const path = require('path');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
@@ -85,6 +90,9 @@ server: { baseDir: ['dist'] },
 }),
 ],
 };
+```
+
+
 
 Installing Bootstrap
 
