@@ -4,7 +4,7 @@
 
 ### Desktop view
 
-![screenshot](./todo.gif)
+![screenshot](./screenshottodo.gif)
 
 Javascript with Webpack project from [The Odin Project curriculum](https://www.theodinproject.com/courses/javascript/lessons/todo-list)
 
