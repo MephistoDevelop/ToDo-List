@@ -1,6 +1,6 @@
 # To-Do List Project
 
-> To-Do List project to manage your times and tasks made with JavaScript and Webpack deployed on git-hub Pages
+> To-Do List project designed to help users manage their time and tasks. Made with JavaScript and webpack and deployed on GitHub Pages
 
 ### Desktop view
 
@@ -10,7 +10,7 @@ Javascript with Webpack project from [The Odin Project curriculum](https://www.t
 
 ## Built With:
 
-- Html,Css,JavaScript
+- HTML, CSS, Javascript
 - Webpack
 - npm manager
 
@@ -21,7 +21,7 @@ Javascript with Webpack project from [The Odin Project curriculum](https://www.t
 ## Future Features
 
 - Store data on a remote server
-- Notifications reminders.
+- Notification reminders.
 
 ## Getting Started
 
@@ -33,9 +33,7 @@ Javascript with Webpack project from [The Odin Project curriculum](https://www.t
 
 ### Setup
 
-To use this project you will need to download this repository onto your computer. Afterwards, you will need to install webpack and npm to correctly run this project. In the package.json file, input this
-
-in `package.json` file on the rules we are going to put this:
+To use this project you will need to download this repository onto your computer. Afterwards, you will need to install webpack and npm to correctly run this project. In the package.json file, input this:
 
 ```
  "scripts": {
@@ -110,18 +108,20 @@ You’ll need to install the required loaders and post CSS plugins for compiling
 
 ### Deployment
 
-To deploy the application and view it on your browser, open your project folder terminal and run these command:" ; "To run the linter files you will need to run these command on the terminal
+To deploy the application and view it on your browser, open your project folder terminal and run these command:
 
 `npm install`
 `npm run build`
 `npm i -D webpack-dev-server`
 `npm i browser-sync --save`
 
+To run the linter files you will need to run these commands on the terminal.
+
 `npm install eslint eslint-config-airbnb --save-dev`
 `npx eslint --init`
 `npx client`
 
-After, you will need to enter to Stickler Page and activate your repository.
+Afterwards, open the Stickler Page and activate your repository.
 
 [Stickler Page](https://stickler-ci.com/) 
 
